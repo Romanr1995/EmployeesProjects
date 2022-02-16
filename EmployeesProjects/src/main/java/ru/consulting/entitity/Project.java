@@ -1,4 +1,4 @@
-package ru.consulting.entities;
+package ru.consulting.entitity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,29 +17,25 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "title", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     private String title;
 
-    @Column(name = "start", nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private LocalDate start;
 
-    @Column(name = "plannedEnding")
-    @Temporal(TemporalType.DATE)
+    @Column(name = "plannedEnding", nullable = false)
     private LocalDate plannedEnding;
 
     @Column(name = "ending")
-    @Temporal(TemporalType.DATE)
     private LocalDate ending;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "projectManager_id")
     private Employee projectManager;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH})
     @JoinColumn(name = "client_id")
     private Client client;
 

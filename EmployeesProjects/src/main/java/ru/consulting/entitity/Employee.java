@@ -1,8 +1,9 @@
-package ru.consulting.entities;
+package ru.consulting.entitity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -18,43 +19,42 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false, length = 50)
     private String name;
 
-    @Column(name = "surname", nullable = false)
+    @Column(nullable = false, length = 50)
     private String surname;
 
-    @Column(name = "patronymic")
+    @Value("${default.patronymic}")
+    @Column(columnDefinition = "varchar(50) DEFAULT 'отсутствует'")
     private String patronymic;
 
-    @Column(name = "salary", nullable = false)
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal salary;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "dateOfEmployment")
+    @Column(nullable = false)
     private LocalDate dateOfEmployment;
 
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(columnDefinition = "varchar(30) NOT NULL UNIQUE")
     private String email;
 
-    @Column(name = "phone", unique = true, length = 11, nullable = false)
+    @Column(unique = true,nullable = false,columnDefinition = "varchar(11)")
     private String phone;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     private Department department;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "position_id")
     private Position position;
 
-    @OneToMany(mappedBy = "projectManager")
+    @OneToMany(mappedBy = "projectManager", cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
     private List<Project> projects;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<EmployeeOnProject> employeeOnProjects;
 
 }

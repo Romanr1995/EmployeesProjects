@@ -1,4 +1,4 @@
-package ru.consulting.entities;
+package ru.consulting.entitity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,26 +17,22 @@ public class EmployeeOnProject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "startWorks")
-    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private LocalDate startWorks;
 
-    @Column(name = "endWorks")
-    @Temporal(TemporalType.DATE)
     private LocalDate endWorks;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role_id", nullable = false)
     private ProjectRole projectRole;
 

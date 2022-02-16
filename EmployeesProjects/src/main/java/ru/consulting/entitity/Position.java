@@ -1,27 +1,31 @@
-package ru.consulting.entities;
+package ru.consulting.entitity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "projectsRoles")
-public class ProjectRole {
+@Table(name = "positions")
+public class Position {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "title", unique = true, nullable = false)
+    @Column(unique = true, nullable = false)
     private String title;
 
-    @OneToMany(mappedBy = "role")
-    private List<EmployeeOnProject> employeeOnProjects;
+    private String[] jobFunction;
+
+    @OneToMany(mappedBy = "position", fetch = FetchType.LAZY)
+    private List<Employee> employees;
+
 }
