@@ -12,7 +12,7 @@ import ru.consulting.service.ServiceClass;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Component
+//@Component
 public class TestClassCommand implements CommandLineRunner {
     private ClientRepo clientRepo;
     private DepartmentRepo departmentRepo;

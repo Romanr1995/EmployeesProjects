@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -35,12 +36,13 @@ public class Employee {
     private BigDecimal salary;
 
     @Column(nullable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfEmployment;
 
     @Column(columnDefinition = "varchar(30) NOT NULL UNIQUE")
     private String email;
 
-    @Column(unique = true,nullable = false,columnDefinition = "varchar(11)")
+    @Column(unique = true, nullable = false, columnDefinition = "varchar(11)")
     private String phone;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -57,4 +59,14 @@ public class Employee {
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<EmployeeOnProject> employeeOnProjects;
 
+    public Employee(String name, String surname, String patronymic, BigDecimal salary, LocalDate dateOfEmployment,
+                    String email, String phone) {
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+        this.salary = salary;
+        this.dateOfEmployment = dateOfEmployment;
+        this.email = email;
+        this.phone = phone;
+    }
 }
