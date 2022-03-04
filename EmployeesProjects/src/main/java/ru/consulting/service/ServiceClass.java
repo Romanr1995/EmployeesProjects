@@ -56,7 +56,7 @@ public class ServiceClass {
     }
 
     public Employee getEmployeeByNameAndSurname(String name, String surname) {
-        Employee employee = employeeRepo.findByNameIgnoreCaseAndSurnameIgnoreCase(name, surname);
+        Employee employee = employeeRepo.findByNameIgnoreCaseAndSurnameIgnoreCase(name, surname).get();
         if (employee == null) {
             throw new RuntimeException("Employee с name: " + name + " и surname: " + surname + " не найден.");
         } else {

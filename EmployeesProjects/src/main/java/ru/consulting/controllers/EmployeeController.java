@@ -44,8 +44,8 @@ public class EmployeeController {
         employeeService.delete(id);
     }
 
-    @PutMapping
-    public void updateById(@RequestBody EmployeeDto employeeDto) {
+    @PutMapping("update")
+    public void update(@RequestBody EmployeeDto employeeDto) {
         employeeService.update(employeeDto);
     }
 
@@ -57,6 +57,12 @@ public class EmployeeController {
     @DeleteMapping("/removes/map")
     public void deletesByNameAndEmail(@RequestBody Map<String, String> namesAndEmails) {
         employeeService.removesMap(namesAndEmails);
+    }
+
+    @PutMapping("/update/department/{title}")
+    public void updateDepartment(@PathVariable String title, @RequestParam String name,
+                                 @RequestParam String surname) {
+        employeeService.updateDepartment(title, name, surname);
     }
 
 }

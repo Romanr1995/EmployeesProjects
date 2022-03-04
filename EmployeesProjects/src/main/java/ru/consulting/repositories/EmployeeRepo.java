@@ -18,6 +18,8 @@ public interface EmployeeRepo extends CrudRepository<Employee, Long> {
 
     Employee findByPhone(String phone);
 
+    Optional<Employee> findByPhoneOrEmailIgnoreCase(String phone, String email);
+
     Employee findByNameAndEmail(String name, String email);
 
     Employee findBySalaryBetween(BigDecimal salaryMin, BigDecimal salaryMax);
@@ -36,7 +38,7 @@ public interface EmployeeRepo extends CrudRepository<Employee, Long> {
 
     List<Employee> findBySalaryIn(List<BigDecimal> bigDecimals);
 
-    Employee findByNameIgnoreCaseAndSurnameIgnoreCase(String name, String surname);
+    Optional<Employee> findByNameIgnoreCaseAndSurnameIgnoreCase(String name, String surname);
 
     @Query("Select emp From Employee emp Where emp.position = :position And emp.department = :department")
     Employee findByPositionAndDepartment(@Param("position") Position position, @Param("department") Department department);

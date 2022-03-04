@@ -31,11 +31,12 @@ public class Department {
     @JoinColumn(name = "departmentHead_id")
     private Employee departmentHead;
 
-    @OneToOne()
+    @OneToOne
     @JoinColumn(name = "higherDepartment_id")
     private Department higherDepartment;
 
     @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
     private List<Employee> employeesOfDepartment;
+
 
 }

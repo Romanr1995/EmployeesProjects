@@ -28,7 +28,6 @@ public class Employee {
     @Column(nullable = false, length = 50)
     private String surname;
 
-    @Value("${default.patronymic}")
     @Column(columnDefinition = "varchar(50) DEFAULT 'отсутствует'")
     private String patronymic;
 

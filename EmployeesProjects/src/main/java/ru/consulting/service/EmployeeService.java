@@ -3,7 +3,9 @@ package ru.consulting.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.consulting.dto.EmployeeDto;
+import ru.consulting.entitity.Department;
 import ru.consulting.entitity.Employee;
+import ru.consulting.repositories.DepartmentRepo;
 import ru.consulting.repositories.EmployeeRepo;
 
 import java.util.ArrayList;
@@ -14,17 +16,19 @@ import java.util.Map;
 public class EmployeeService {
 
     private EmployeeRepo employeeRepo;
+    private DepartmentRepo departmentRepo;
 
     @Autowired
-    public void setEmployeeRepo(EmployeeRepo employeeRepo) {
+    public EmployeeService(EmployeeRepo employeeRepo, DepartmentRepo departmentRepo) {
         this.employeeRepo = employeeRepo;
+        this.departmentRepo = departmentRepo;
     }
 
     public List<EmployeeDto> getAllEmployeeDto() {
-        List<EmployeeDto> employees = new ArrayList<>();
+        List<EmployeeDto> employeesDto = new ArrayList<>();
         employeeRepo.findAll().iterator().forEachRemaining(employee ->
-                employees.add(convertEmployeeToEmployeeDto(employee)));
-        return employees;
+                employeesDto.add(convertEmployeeToEmployeeDto(employee)));
+        return employeesDto;
     }
 
     public EmployeeDto getEmployeeDtoById(Long id) {
@@ -71,8 +75,15 @@ public class EmployeeService {
         if (employeeDto.getPhone() != null) {
             employeeById.setPhone(employeeDto.getPhone());
         }
-
         employeeRepo.save(employeeById);
+    }
+
+    public void updateDepartment(String title, String name, String surname) {
+        Department department = departmentRepo.findByTitleEqualsIgnoreCase(title);
+        Employee employee = employeeRepo
+                .findByNameIgnoreCaseAndSurnameIgnoreCase(name, surname).orElseThrow();
+        employee.setDepartment(department);
+        employeeRepo.save(employee);
     }
 
     public void removeList(List<Long> id) {
