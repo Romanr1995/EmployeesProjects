@@ -1,10 +1,12 @@
 package ru.consulting.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.consulting.dto.EmployeeDto;
 import ru.consulting.service.EmployeeService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -35,8 +37,9 @@ public class EmployeeController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void saveNew(@RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<Void> saveNew(@RequestBody @Valid EmployeeDto employeeDto) {
         employeeService.save(employeeDto);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
@@ -63,6 +66,12 @@ public class EmployeeController {
     public void updateDepartment(@PathVariable String title, @RequestParam String name,
                                  @RequestParam String surname) {
         employeeService.updateDepartment(title, name, surname);
+    }
+
+    @PostMapping("/insert/position/{title}")
+    public void insertPosition(@PathVariable String title, @RequestParam String phone,
+                               @RequestParam(required = false) String email) {
+        employeeService.addPosition(title, phone, email);
     }
 
 }

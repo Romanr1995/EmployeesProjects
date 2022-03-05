@@ -5,23 +5,28 @@ import org.springframework.stereotype.Service;
 import ru.consulting.dto.EmployeeDto;
 import ru.consulting.entitity.Department;
 import ru.consulting.entitity.Employee;
+import ru.consulting.entitity.Position;
 import ru.consulting.repositories.DepartmentRepo;
 import ru.consulting.repositories.EmployeeRepo;
+import ru.consulting.repositories.PositionRepo;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class EmployeeService {
 
     private EmployeeRepo employeeRepo;
     private DepartmentRepo departmentRepo;
+    private PositionRepo positionRepo;
 
     @Autowired
-    public EmployeeService(EmployeeRepo employeeRepo, DepartmentRepo departmentRepo) {
+    public EmployeeService(EmployeeRepo employeeRepo, DepartmentRepo departmentRepo, PositionRepo position) {
         this.employeeRepo = employeeRepo;
         this.departmentRepo = departmentRepo;
+        this.positionRepo = position;
     }
 
     public List<EmployeeDto> getAllEmployeeDto() {
@@ -79,7 +84,7 @@ public class EmployeeService {
     }
 
     public void updateDepartment(String title, String name, String surname) {
-        Department department = departmentRepo.findByTitleEqualsIgnoreCase(title);
+        Department department = departmentRepo.findByTitleEqualsIgnoreCase(title).orElseThrow();
         Employee employee = employeeRepo
                 .findByNameIgnoreCaseAndSurnameIgnoreCase(name, surname).orElseThrow();
         employee.setDepartment(department);
@@ -98,6 +103,26 @@ public class EmployeeService {
                 employeeRepo.delete(byNameAndEmail);
             }
         }
+    }
+
+    public void addPosition(String title, String phone, String email) {
+        Position position = positionRepo.findByTitleIgnoreCase(title);
+        if (Objects.isNull(position)) {
+            throw new RuntimeException("Position с title: " + title + " не существует.");
+        }
+        Employee employee;
+        if (email != null) {
+            employee = employeeRepo.findByPhoneOrEmailIgnoreCase(phone, email).orElseThrow(() ->
+                    new RuntimeException("Employee с phone: " + phone + " и email: " + email + " не найден."));
+            employee.setPosition(position);
+        } else {
+            employee = employeeRepo.findByPhone(phone);
+            if (Objects.isNull(employee)) {
+                throw new RuntimeException("Emplotee с phone: " + phone + " не найден.");
+            }
+            employee.setPosition(position);
+        }
+        employeeRepo.save(employee);
     }
 
     public EmployeeDto convertEmployeeToEmployeeDto(Employee employee) {
