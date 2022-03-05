@@ -65,7 +65,7 @@ public class ServiceClass {
     }
 
     public Department getDepartmentByTitle(String title) {
-        Department departmentRepoByTitle = departmentRepo.findByTitleEqualsIgnoreCase(title);
+        Department departmentRepoByTitle = departmentRepo.findByTitleEqualsIgnoreCase(title).orElseThrow();
         if (departmentRepoByTitle == null) {
             throw new RuntimeException("Department c title: " + title + " не найден.");
         } else {

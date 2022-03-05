@@ -55,9 +55,6 @@ public class EmployeeService {
     }
 
     public void update(EmployeeDto employeeDto) {
-        if (employeeDto.getId() == null) {
-            throw new RuntimeException("Неверно задан id");
-        }
         Employee employeeById = employeeRepo.findById(employeeDto.getId()).orElseThrow();
         if (employeeDto.getName() != null) {
             employeeById.setName(employeeDto.getName());

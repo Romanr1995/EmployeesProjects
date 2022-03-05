@@ -12,7 +12,7 @@ import ru.consulting.repositories.TestRepo;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Component
+//@Component
 public class TestClassApplication implements ApplicationRunner {
 
     private TestRepo testRepo;

@@ -8,9 +8,10 @@ import ru.consulting.entitity.Employee;
 import ru.consulting.repositories.DepartmentRepo;
 import ru.consulting.repositories.EmployeeRepo;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,14 +31,8 @@ public class DepartmentService {
     }
 
     public List<DepartmentDto> getAll() {
-        List<DepartmentDto> departmentDtos = new ArrayList<>();
-//        Iterator<Department> departmentIterator = departmentRepo.findAll().iterator();
-//        while (departmentIterator.hasNext()) {
-//            departmentDtos.add(convertDepartmentToDepartmentDto(departmentIterator.next()));
-//        }
         return departmentRepo.getAllOrderById().stream().map(this::convertDepartmentToDepartmentDto)
                 .collect(Collectors.toList());
-//        return departmentDtos;
     }
 
     public void removeById(Long id) {
@@ -60,6 +55,31 @@ public class DepartmentService {
             depHead = employeeRepo.findByPhone(phone);
         }
         department.setDepartmentHead(depHead);
+        departmentRepo.save(department);
+    }
+
+    public void setHigherDepartment(Map<String, DepartmentDto> departmentDtoMap) {
+        Department higherDepartment;
+        Department department = null;
+
+        DepartmentDto employeeDtoHigherDepartment = departmentDtoMap.get("higherDepartment");
+        Optional<Department> departmentOptional = departmentRepo.findByIdOrTitleIgnoreCase(employeeDtoHigherDepartment.getId(),
+                employeeDtoHigherDepartment.getTitle());
+        if (departmentOptional.isPresent()) {
+            higherDepartment = departmentOptional.get();
+        } else {
+            if (employeeDtoHigherDepartment.getTitle() == null) {
+                throw new RuntimeException("Ошибка.Такой Department еще не существует." +
+                        "Для создания нового Department должно обязательно быть задано title.");
+            } else {
+                higherDepartment = departmentRepo.save(convertDepartmentDtoToDepartment(employeeDtoHigherDepartment));
+            }
+        }
+        DepartmentDto employeeDepartment = departmentDtoMap.get("department");
+        department = departmentRepo.findByIdOrTitleIgnoreCase(employeeDepartment.getId(),
+                employeeDepartment.getTitle()).orElseThrow(() -> new RuntimeException("Department не существует"));
+
+        department.setHigherDepartment(higherDepartment);
         departmentRepo.save(department);
     }
 
