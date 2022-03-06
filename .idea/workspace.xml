@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/validated/MapValidConstraint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/validated/MapValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/validated/OnCreate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/validated/OnUpdate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/specifications/EmployeeSpecifications.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/TestClassApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/TestClassApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/DepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/DepartmentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/EmployeeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/PositionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/PositionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/DepartmentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/DepartmentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/EmployeeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/EmployeeDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/PositionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/PositionDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/DepartmentRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/DepartmentRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/PositionRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/PositionRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/DepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/DepartmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/EmployeeRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/EmployeeRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/EmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/PositionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/PositionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/ServiceClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/ServiceClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -114,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646503459543</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="обновил валидацию везде">
+      <created>1646515659561</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1646515659561</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -206,6 +201,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Добавил Service" />
     <MESSAGE value="добавил валидацию" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил валидацию" />
+    <MESSAGE value="обновил валидацию везде" />
+    <option name="LAST_COMMIT_MESSAGE" value="обновил валидацию везде" />
   </component>
 </project>

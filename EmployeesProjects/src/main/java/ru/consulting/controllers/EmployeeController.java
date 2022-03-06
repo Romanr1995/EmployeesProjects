@@ -1,6 +1,7 @@
 package ru.consulting.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,8 @@ import ru.consulting.validated.OnUpdate;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -27,8 +30,15 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public List<@Valid EmployeeDto> showAllEmployeeDto() {
-        return employeeService.getAllEmployeeDto();
+    public List<EmployeeDto> showAllEmployeeDtoWithFiltering(@RequestParam(required = false) Integer page,
+                                                             @RequestParam(required = false) BigDecimal minSalary,
+                                                             @RequestParam(required = false) BigDecimal maxSalary,
+                                                             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate after,
+                                                             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate before,
+                                                             @RequestParam(required = false) String sort,
+                                                             @RequestParam(required = false) Boolean direction) {
+        return employeeService.getAllEmployeeDtoWithFiltering(page, minSalary, maxSalary, after,
+                before, sort, direction);
     }
 
     @GetMapping("{id}")

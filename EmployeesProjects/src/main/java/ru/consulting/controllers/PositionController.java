@@ -29,9 +29,9 @@ public class PositionController {
     }
 
     @RequestMapping("{title}")
-    public Iterable<PositionDto> showAllByFiltering(@RequestParam(required = false) Boolean idAscending,
-                                                    @RequestParam(required = false) Boolean idDescending,
-                                                    @PathVariable(required = false) boolean title) {
+    public Iterable<PositionDto> showAllBySorting(@RequestParam(required = false) Boolean idAscending,
+                                                  @RequestParam(required = false) Boolean idDescending,
+                                                  @PathVariable(required = false) boolean title) {
         return positionService.getAll(idAscending, idDescending, title);
     }
 }

@@ -1,6 +1,9 @@
 package ru.consulting.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.consulting.dto.EmployeeDto;
 import ru.consulting.entitity.Department;
@@ -9,7 +12,10 @@ import ru.consulting.entitity.Position;
 import ru.consulting.repositories.DepartmentRepo;
 import ru.consulting.repositories.EmployeeRepo;
 import ru.consulting.repositories.PositionRepo;
+import ru.consulting.repositories.specifications.EmployeeSpecifications;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -29,10 +35,39 @@ public class EmployeeService {
         this.positionRepo = position;
     }
 
-    public List<EmployeeDto> getAllEmployeeDto() {
+    public List<EmployeeDto> getAllEmployeeDtoWithFiltering(Integer page,
+                                                            BigDecimal minSalary,
+                                                            BigDecimal maxSalary,
+                                                            LocalDate dateAfter,
+                                                            LocalDate dateBefore,
+                                                            String sort,
+                                                            Boolean direction) {
         List<EmployeeDto> employeesDto = new ArrayList<>();
-        employeeRepo.findAll().iterator().forEachRemaining(employee ->
-                employeesDto.add(convertEmployeeToEmployeeDto(employee)));
+
+        if (page == null) {
+            page = 0;
+        }
+
+        Specification<Employee> specification = Specification.where(null);
+        if (minSalary != null) {
+            specification = specification.and(EmployeeSpecifications.minSalary(minSalary));
+        }
+        if (maxSalary != null) {
+            specification = specification.and(EmployeeSpecifications.maxSalary(maxSalary));
+        }
+        if (dateAfter != null) {
+            specification = specification.and(EmployeeSpecifications.dateAfter(dateAfter));
+        }
+        if (dateBefore != null) {
+            specification = specification.and(EmployeeSpecifications.dateBefore(dateBefore));
+        }
+        int sizePage = 2;
+        Sort.Direction dir = Sort.Direction.ASC;
+        if (direction != null && !direction) {
+            dir = Sort.Direction.DESC;
+        }
+        employeeRepo.findAll(specification, PageRequest.of(page, sizePage, Sort.by(dir, sort))).getContent()
+                .forEach(employee -> employeesDto.add(convertEmployeeToEmployeeDto(employee)));
         return employeesDto;
     }
 
