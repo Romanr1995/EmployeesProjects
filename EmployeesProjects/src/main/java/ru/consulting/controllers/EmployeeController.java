@@ -36,9 +36,11 @@ public class EmployeeController {
                                                              @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate after,
                                                              @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate before,
                                                              @RequestParam(required = false) String sort,
-                                                             @RequestParam(required = false) Boolean direction) {
+                                                             @RequestParam(required = false) Boolean direction,
+                                                             @RequestParam(required = false) String department,
+                                                             @RequestParam(required = false) String surname) {
         return employeeService.getAllEmployeeDtoWithFiltering(page, minSalary, maxSalary, after,
-                before, sort, direction);
+                before, sort, direction, department, surname);
     }
 
     @GetMapping("{id}")

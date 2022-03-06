@@ -41,7 +41,9 @@ public class EmployeeService {
                                                             LocalDate dateAfter,
                                                             LocalDate dateBefore,
                                                             String sort,
-                                                            Boolean direction) {
+                                                            Boolean direction,
+                                                            String department,
+                                                            String surname) {
         List<EmployeeDto> employeesDto = new ArrayList<>();
 
         if (page == null) {
@@ -61,10 +63,19 @@ public class EmployeeService {
         if (dateBefore != null) {
             specification = specification.and(EmployeeSpecifications.dateBefore(dateBefore));
         }
+        if (department != null) {
+            specification = specification.and(EmployeeSpecifications.departmentTitle(department));
+        }
+        if (surname != null) {
+            specification = specification.and(EmployeeSpecifications.departmentHeadSurname(surname));
+        }
         int sizePage = 2;
         Sort.Direction dir = Sort.Direction.ASC;
         if (direction != null && !direction) {
             dir = Sort.Direction.DESC;
+        }
+        if (sort == null) {
+            sort = "id";
         }
         employeeRepo.findAll(specification, PageRequest.of(page, sizePage, Sort.by(dir, sort))).getContent()
                 .forEach(employee -> employeesDto.add(convertEmployeeToEmployeeDto(employee)));

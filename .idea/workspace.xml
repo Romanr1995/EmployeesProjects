@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/specifications/EmployeeSpecifications.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/PositionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/PositionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/EmployeeRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/EmployeeRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/specifications/EmployeeSpecifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/specifications/EmployeeSpecifications.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/EmployeeService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646515659561</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="добавил сортивку в выборку Employee">
+      <created>1646526085801</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646526085801</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -202,6 +209,7 @@
     <MESSAGE value="Добавил Service" />
     <MESSAGE value="добавил валидацию" />
     <MESSAGE value="обновил валидацию везде" />
-    <option name="LAST_COMMIT_MESSAGE" value="обновил валидацию везде" />
+    <MESSAGE value="добавил сортивку в выборку Employee" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил сортивку в выборку Employee" />
   </component>
 </project>

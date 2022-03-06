@@ -35,7 +35,7 @@ public class Department {
     @JoinColumn(name = "higherDepartment_id")
     private Department higherDepartment;
 
-    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
     private List<Employee> employeesOfDepartment;
 
 
