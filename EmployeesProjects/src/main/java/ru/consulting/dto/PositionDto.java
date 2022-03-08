@@ -20,7 +20,7 @@ public class PositionDto {
     @Size(min = 2, max = 25)
     @NotBlank
     private String title;
-    @NotEmpty
-    @Size(min = 2)
+//    @NotEmpty
+//    @Size(min = 2)
     private String[] jobFunction;
 }

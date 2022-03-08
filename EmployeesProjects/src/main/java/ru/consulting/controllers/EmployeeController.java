@@ -2,6 +2,7 @@ package ru.consulting.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -44,8 +45,13 @@ public class EmployeeController {
     }
 
     @GetMapping("{id}")
-    public EmployeeDto showEmployeeDtoById(@PathVariable("id") Long id) {
-        return employeeService.getEmployeeDtoById(id);
+    public ResponseEntity<EmployeeDto> showEmployeeDtoById(@PathVariable("id") Long id) {
+        try {
+            return new ResponseEntity<>(employeeService.getEmployeeDtoById(id), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.MULTI_STATUS).build();
+        }
+
     }
 
     @GetMapping("/count")
@@ -57,12 +63,14 @@ public class EmployeeController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> saveNew(@RequestBody @Valid EmployeeDto employeeDto) {
         employeeService.save(employeeDto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(201).build();
     }
 
+
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable("id") @NotNull Long id) {
+    public ResponseEntity<Void> deleteById(@PathVariable("id") @NotNull Long id) {
         employeeService.delete(id);
+        return ResponseEntity.status(204).build();
     }
 
     @Validated(OnUpdate.class)

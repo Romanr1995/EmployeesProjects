@@ -1,9 +1,6 @@
 package ru.consulting.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import ru.consulting.validated.OnCreate;
 import ru.consulting.validated.OnUpdate;
 
@@ -11,6 +8,7 @@ import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@ToString
 @Setter
 @Getter
 @AllArgsConstructor
@@ -18,6 +16,7 @@ import java.time.LocalDate;
 public class EmployeeDto {
 
     @NotNull(message = "id должен быть задан", groups = OnUpdate.class)
+    @Null(message = "для создания id не требуется", groups = OnCreate.class)
     private Long id;
 
     @NotBlank(message = "Необходимо указать имя", groups = OnCreate.class)

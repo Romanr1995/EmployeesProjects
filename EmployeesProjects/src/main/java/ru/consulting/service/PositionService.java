@@ -1,6 +1,8 @@
 package ru.consulting.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.consulting.dto.PositionDto;
 import ru.consulting.entitity.Position;
@@ -19,13 +21,15 @@ public class PositionService {
         this.positionRepo = positionRepo;
     }
 
-    public void saveNewOrUpdate(PositionDto positionDto) {
+    public ResponseEntity<Void> saveNewOrUpdate(PositionDto positionDto) {
         if (positionDto.getId() == null) {
             positionRepo.save(convertToPosition(positionDto));
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } else {
             Optional<Position> positionOptional = positionRepo.findById(positionDto.getId());
             if (positionOptional.isEmpty()) {
                 positionRepo.save(convertToPosition(positionDto));
+                return ResponseEntity.status(HttpStatus.CREATED).build();
             } else {
                 Position position = positionOptional.get();
                 if (positionDto.getTitle() != null) {
@@ -37,6 +41,7 @@ public class PositionService {
                 positionRepo.save(position);
             }
         }
+        return ResponseEntity.ok().build();
     }
 
     public void removes(String[] titles) {

@@ -2,12 +2,14 @@ package ru.consulting.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.consulting.dto.DepartmentDto;
 import ru.consulting.entitity.Department;
 import ru.consulting.entitity.Employee;
 import ru.consulting.repositories.DepartmentRepo;
 import ru.consulting.repositories.EmployeeRepo;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -39,6 +41,7 @@ public class DepartmentService {
         departmentRepo.deleteById(id);
     }
 
+    @Transactional(noRollbackFor = ConstraintViolationException.class)
     public void saveAll(List<DepartmentDto> departmentDtos) {
         List<Department> departmentList = departmentDtos.stream().map(this::convertDepartmentDtoToDepartment).collect(Collectors.toList());
         departmentRepo.saveAll(departmentList);
