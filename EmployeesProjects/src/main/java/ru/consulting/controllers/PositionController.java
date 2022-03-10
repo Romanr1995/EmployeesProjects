@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
 @RestController
-@RequestMapping("position")
+@RequestMapping("/position")
 public class PositionController {
     private PositionService positionService;
 
@@ -33,10 +33,10 @@ public class PositionController {
         positionService.removes(titles);
     }
 
-    @RequestMapping("{title}")
+    @RequestMapping
     public ResponseEntity<Iterable<PositionDto>> showAllBySorting(@RequestParam(required = false) Boolean idAscending,
                                                                   @RequestParam(required = false) Boolean idDescending,
-                                                                  @PathVariable(required = false) boolean title) {
+                                                                  @RequestParam(required = false) boolean title) {
 
         return ResponseEntity.ok(positionService.getAll(idAscending, idDescending, title));
     }

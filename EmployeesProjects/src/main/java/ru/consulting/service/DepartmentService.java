@@ -38,7 +38,11 @@ public class DepartmentService {
     }
 
     public void removeById(Long id) {
-        departmentRepo.deleteById(id);
+        if (departmentRepo.existsById(id)){
+            departmentRepo.deleteById(id);
+        } else {
+            throw new RuntimeException("Пользователь с id: " + id + " не найден.");
+        }
     }
 
     @Transactional(noRollbackFor = ConstraintViolationException.class)
