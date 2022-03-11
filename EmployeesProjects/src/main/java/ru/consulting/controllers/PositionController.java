@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.consulting.dto.PositionDto;
 import ru.consulting.service.PositionService;
@@ -27,6 +28,7 @@ public class PositionController {
         return positionService.saveNewOrUpdate(positionDto);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','MAINUSER')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping
     public void deletesByTitles(@RequestBody @NotEmpty String[] titles) {

@@ -3,11 +3,14 @@ package ru.consulting.entitity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.Constraint;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collection;
@@ -30,7 +33,7 @@ public class Employee {
     @Column(nullable = false, length = 50)
     private String surname;
 
-    @Column(columnDefinition = "varchar(50) DEFAULT 'отсутствует'")
+    @Column(columnDefinition = "varchar(50)")
     private String patronymic;
 
     @Column(nullable = false, precision = 10, scale = 2)

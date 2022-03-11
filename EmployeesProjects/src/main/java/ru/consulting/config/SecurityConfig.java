@@ -27,12 +27,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic()
-                .and()
-                .csrf().disable()
+        http
+//                .formLogin()
+                .httpBasic()
+                .and().csrf().disable()
                 .authorizeRequests()
-                .mvcMatchers(HttpMethod.GET,"/department/**").hasAnyRole("ADMIN","USER","MAINUSER")
-                .anyRequest().permitAll();
+                .mvcMatchers("/").permitAll()
+                .mvcMatchers(HttpMethod.POST, "/department").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.PUT, "/department/**").hasRole("ADMIN")
+                .mvcMatchers(HttpMethod.DELETE, "/department/**").hasAnyRole("MAINUSER", "ADMIN")
+                .mvcMatchers(HttpMethod.POST, "/department/save/list/**").hasRole("MAINUSER")
+                .anyRequest().authenticated()
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
     }
 
 //    @Bean

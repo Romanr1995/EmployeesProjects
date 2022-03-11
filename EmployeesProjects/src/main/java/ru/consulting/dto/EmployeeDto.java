@@ -24,7 +24,7 @@ public class EmployeeDto {
 
     @NotBlank(message = "Необходимо указать фамилию", groups = OnCreate.class)
     private String surname;
-    private String patronymic;
+    private String patronymic = "нет отчества";
 
     @Positive(message = "Зарплата должна быть больше 0")
     private BigDecimal salary;
