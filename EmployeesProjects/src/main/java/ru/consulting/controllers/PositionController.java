@@ -28,7 +28,7 @@ public class PositionController {
         return positionService.saveNewOrUpdate(positionDto);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN','MAINUSER')")
+    @PreAuthorize("hasAuthority('employee:partial_write')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping
     public void deletesByTitles(@RequestBody @NotEmpty String[] titles) {

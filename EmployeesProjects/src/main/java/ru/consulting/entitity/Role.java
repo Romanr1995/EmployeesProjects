@@ -1,25 +1,30 @@
 package ru.consulting.entitity;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-@Entity
-@NoArgsConstructor
-@Data
-@Table(name = "roles")
-public class Role {
+public enum Role {
+    USER(Set.of(Permission.EMPLOYEE_READ)),
+    ADMIN(Set.of(Permission.EMPLOYEE_READ, Permission.EMPLOYEE_WRITE, Permission.EMPLOYEE_PARTIAL_WRITE)),
+    MAINUSER(Set.of(Permission.EMPLOYEE_READ, Permission.EMPLOYEE_PARTIAL_WRITE));
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    private final Set<Permission> permissions;
 
-    @Column(name = "name")
-    private String name;
+    Role(Set<Permission> permissions) {
+        this.permissions = permissions;
+    }
 
-    public Role(String name) {
-        this.name = name;
+    public Set<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public Set<SimpleGrantedAuthority> getAuthorities() {
+        return getPermissions().stream()
+                .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
+                .collect(Collectors.toSet());
     }
 }

@@ -1,6 +1,7 @@
 package ru.consulting.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,18 +11,20 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import ru.consulting.service.UserService;
+import ru.consulting.entitity.Permission;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private UserService userServise;
+
+    private final UserDetailsService userServise;
 
     @Autowired
-    public void setUserServise(UserService userServise) {
+    public SecurityConfig(@Qualifier("employeeServiceImpl") UserDetailsService userServise) {
         this.userServise = userServise;
     }
 
@@ -33,10 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable()
                 .authorizeRequests()
                 .mvcMatchers("/").permitAll()
-                .mvcMatchers(HttpMethod.POST, "/department").hasRole("ADMIN")
-                .mvcMatchers(HttpMethod.PUT, "/department/**").hasRole("ADMIN")
-                .mvcMatchers(HttpMethod.DELETE, "/department/**").hasAnyRole("MAINUSER", "ADMIN")
-                .mvcMatchers(HttpMethod.POST, "/department/save/list/**").hasRole("MAINUSER")
+                .mvcMatchers(HttpMethod.POST, "/department").hasAuthority(Permission.EMPLOYEE_WRITE.getPermission())
+                .mvcMatchers(HttpMethod.PUT, "/department/**").hasAuthority(Permission.EMPLOYEE_WRITE.getPermission())
+                .mvcMatchers(HttpMethod.DELETE, "/department/**").hasAuthority(Permission.EMPLOYEE_PARTIAL_WRITE.getPermission())
+                .mvcMatchers(HttpMethod.POST, "/department/save/list/**").hasAuthority(Permission.EMPLOYEE_PARTIAL_WRITE.getPermission())
                 .anyRequest().authenticated()
                 .and()
                 .logout()

@@ -19,6 +19,8 @@ public interface EmployeeRepo extends JpaRepository<Employee, Long>, JpaSpecific
 
     Employee findByPhone(String phone);
 
+    Optional<Employee> findByEmail(String email);
+
     Optional<Employee> findByPhoneOrEmailIgnoreCase(String phone, String email);
 
     Employee findByNameAndEmail(String name, String email);

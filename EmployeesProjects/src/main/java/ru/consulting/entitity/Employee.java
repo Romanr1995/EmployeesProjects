@@ -4,16 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.Constraint;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -48,6 +43,17 @@ public class Employee {
 
     @Column(unique = true, nullable = false, columnDefinition = "varchar(11)")
     private String phone;
+
+    @Column(name = "password")
+    private String password = "$2a$10$TLzjGWAgGw/xj7WhbY.59O6qAK3GDq.PkHS1mi1c0OsITC6855wIu";
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "status")
+    private Status status = Status.ACTIVE;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "role")
+    private Role role = Role.USER;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
