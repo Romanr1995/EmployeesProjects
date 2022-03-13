@@ -3,13 +3,15 @@ package ru.consulting.entitity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -51,9 +53,16 @@ public class Employee {
     @Column(name = "status")
     private Status status = Status.ACTIVE;
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "role")
-    private Role role = Role.USER;
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "employees_roles", joinColumns = @JoinColumn(name = "employee_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> role = Set.of(Role.USER);
+
+    public Set<SimpleGrantedAuthority> getAllAuthorities() {
+        Set<SimpleGrantedAuthority> simpleGrantedAuthorities = new HashSet<>();
+        role.forEach(rol -> simpleGrantedAuthorities.addAll(rol.getAuthorities()));
+        return simpleGrantedAuthorities;
+    }
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")

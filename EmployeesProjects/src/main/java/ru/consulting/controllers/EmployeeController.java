@@ -68,9 +68,8 @@ public class EmployeeController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable("id") @NotNull Long id) {
-        employeeService.delete(id);
-        return ResponseEntity.status(204).build();
+    public ResponseEntity<?> deleteById(@PathVariable("id") @NotNull Long id) {
+        return employeeService.delete(id);
     }
 
     @Validated(OnUpdate.class)

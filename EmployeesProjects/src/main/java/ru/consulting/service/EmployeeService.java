@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.consulting.dto.EmployeeDto;
 import ru.consulting.entitity.Department;
@@ -96,8 +98,13 @@ public class EmployeeService {
         employeeRepo.save(convertEmployeeDtoToEmployee(employeeDto));
     }
 
-    public void delete(Long id) {
-        employeeRepo.deleteById(id);
+    public ResponseEntity<?> delete(Long id) {
+        try {
+            employeeRepo.deleteById(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     public void update(EmployeeDto employeeDto) {

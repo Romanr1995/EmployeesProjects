@@ -68,6 +68,6 @@ public class SecurityEmployee implements UserDetails {
                 employee.getStatus().equals(Status.ACTIVE),
                 employee.getStatus().equals(Status.ACTIVE),
                 employee.getStatus().equals(Status.ACTIVE),
-                employee.getRole().getAuthorities());
+                employee.getAllAuthorities());
     }
 }
