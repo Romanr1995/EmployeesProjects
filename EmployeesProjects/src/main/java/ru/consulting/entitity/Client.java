@@ -27,7 +27,7 @@ public class Client {
     @Column(unique = true, length = 11, nullable = false)
     private String phone;
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Project> projects;
 
 }
