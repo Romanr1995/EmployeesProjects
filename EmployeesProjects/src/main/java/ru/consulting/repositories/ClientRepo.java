@@ -12,4 +12,7 @@ public interface ClientRepo extends CrudRepository<Client, Long> {
     Client findByTitleIgnoreCase(String title);
 
     Optional<Client> findByPhone(String phone);
+
+    Optional<Client> findByEmailIgnoreCase(String email);
+
 }

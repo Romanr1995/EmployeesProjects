@@ -23,4 +23,5 @@ public class ProjectDto {
 
     private String projectManagerSurname;
 
+    private String clientTitle;
 }

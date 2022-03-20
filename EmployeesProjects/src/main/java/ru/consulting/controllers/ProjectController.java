@@ -2,6 +2,7 @@ package ru.consulting.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.consulting.dto.ProjectDto;
 import ru.consulting.entitity.Project;
@@ -32,5 +33,19 @@ public class ProjectController {
     @GetMapping("{id}")
     public ProjectDto showById(@PathVariable Long id) {
         return projectService.getById(id);
+    }
+
+    @GetMapping("show/{title}")
+    public ResponseEntity<?> showByTitle(@PathVariable String title) {
+        try {
+            return ResponseEntity.ok(projectService.getByTitle(title));
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("addclient/{email}")
+    public void addProject(@PathVariable String email, @RequestParam String title) {
+        projectService.addClient(email, title);
     }
 }
