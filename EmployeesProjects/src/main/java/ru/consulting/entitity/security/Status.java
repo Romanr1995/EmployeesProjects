@@ -1,4 +1,4 @@
-package ru.consulting.entitity;
+package ru.consulting.entitity.security;
 
 public enum Status {
     ACTIVE, BANNED

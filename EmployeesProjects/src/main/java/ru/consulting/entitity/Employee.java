@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import ru.consulting.entitity.security.Role;
+import ru.consulting.entitity.security.Status;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -33,7 +35,7 @@ public class Employee {
     private String surname;
 
     @Column(columnDefinition = "varchar(50)")
-    private String patronymic;
+    private String patronymic = "Отчества нет";
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal salary;

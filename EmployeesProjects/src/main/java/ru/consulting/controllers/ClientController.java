@@ -9,6 +9,7 @@ import ru.consulting.entitity.Client;
 import ru.consulting.entitity.Project;
 import ru.consulting.service.ClientService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody Client client) {
+    public ResponseEntity<?> save(@RequestBody @Valid Client client) {
         try {
             clientService.saveNew(client);
             return ResponseEntity.ok().build();

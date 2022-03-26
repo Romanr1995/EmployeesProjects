@@ -5,7 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.consulting.entitity.Employee;
-import ru.consulting.entitity.Status;
+import ru.consulting.entitity.security.Status;
 
 import java.util.Collection;
 import java.util.List;

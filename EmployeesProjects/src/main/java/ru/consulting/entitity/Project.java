@@ -3,12 +3,15 @@ package ru.consulting.entitity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Loader;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.*;
+import javax.validation.constraints.AssertFalse;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -35,6 +38,7 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @AssertFalse
     private Boolean deleted = false;
 
     @Column(unique = true, nullable = false)
@@ -58,6 +62,7 @@ public class Project {
     private Employee projectManager;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "client_id", foreignKey = @ForeignKey(name = "ClientKey",
             foreignKeyDefinition = "FOREIGN KEY (client_id) REFERENCES clients (id) On Delete SET Null"))
     private Client client;

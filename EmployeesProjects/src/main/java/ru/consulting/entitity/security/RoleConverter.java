@@ -1,4 +1,6 @@
-package ru.consulting.entitity;
+package ru.consulting.entitity.security;
+
+import ru.consulting.entitity.security.Role;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

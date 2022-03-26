@@ -15,4 +15,6 @@ public interface ClientRepo extends CrudRepository<Client, Long> {
 
     Optional<Client> findByEmailIgnoreCase(String email);
 
+    @Override
+    void delete(Client entity);
 }

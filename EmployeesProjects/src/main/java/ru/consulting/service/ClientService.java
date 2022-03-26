@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.consulting.dto.ProjectDto;
 import ru.consulting.entitity.Client;
-import ru.consulting.entitity.Project;
 import ru.consulting.repositories.ClientRepo;
 import ru.consulting.repositories.ProjectRepo;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +22,7 @@ public class ClientService {
         this.projectRepo = projectRepo;
     }
 
-    public void saveNew(@Valid Client client) {
+    public void saveNew(Client client) {
         clientRepo.save(client);
     }
 
@@ -35,10 +33,6 @@ public class ClientService {
     public void deleteByPhone(String phone) {
         Client client = clientRepo.findByPhone(phone).orElseThrow(() ->
                 new RuntimeException("Client с phone: " + phone + " не найден."));
-        for (Project project : client.getProjects()) {
-            project.setClient(null);
-            projectRepo.save(project);
-        }
         clientRepo.delete(client);
     }
 

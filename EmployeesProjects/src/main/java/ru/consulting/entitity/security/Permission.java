@@ -1,4 +1,4 @@
-package ru.consulting.entitity;
+package ru.consulting.entitity.security;
 
 
 public enum Permission {

@@ -160,18 +160,11 @@ public class EmployeeService {
         if (Objects.isNull(position)) {
             throw new RuntimeException("Position с title: " + title + " не существует.");
         }
-        Employee employee;
-        if (email != null) {
-            employee = employeeRepo.findByPhoneOrEmailIgnoreCase(phone, email).orElseThrow(() ->
-                    new RuntimeException("Employee с phone: " + phone + " и email: " + email + " не найден."));
-            employee.setPosition(position);
-        } else {
-            employee = employeeRepo.findByPhone(phone);
-            if (Objects.isNull(employee)) {
-                throw new RuntimeException("Emplotee с phone: " + phone + " не найден.");
-            }
-            employee.setPosition(position);
-        }
+
+        Employee employee = employeeRepo.findByPhoneOrEmailIgnoreCase(phone, email).orElseThrow(() ->
+                new RuntimeException("Employee с phone: " + phone + " и email: " + email + " не найден."));
+        employee.setPosition(position);
+
         employeeRepo.save(employee);
     }
 

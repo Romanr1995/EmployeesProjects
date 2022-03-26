@@ -24,7 +24,8 @@ public class EmployeeDto {
 
     @NotBlank(message = "Необходимо указать фамилию", groups = OnCreate.class)
     private String surname;
-    private String patronymic = "нет отчества";
+
+    private String patronymic = "отчества нет";
 
     @Positive(message = "Зарплата должна быть больше 0")
     private BigDecimal salary;
@@ -32,7 +33,7 @@ public class EmployeeDto {
     @Past(message = "Дата приёма на работу не должна быть позже текущей")
     private LocalDate dateOfEmployment;
 
-    @Email(message = "Email должен быть корректным адресом электронной почты")
+    @Email(regexp = ".+[@].+[\\.].+", message = "Неверный формат email")
     private String email;
 
     @Pattern(regexp = "89[0-9]{9}", message = "Телефонный номер должен начинаться с 89, затем - 9 цифр")

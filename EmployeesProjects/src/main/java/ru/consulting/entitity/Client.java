@@ -3,14 +3,18 @@ package ru.consulting.entitity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Loader;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import javax.validation.constraints.AssertFalse;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import java.util.List;
 
+@ToString(exclude = "projects")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,11 +38,13 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @AssertFalse
     private Boolean deleted = false;
 
     @Column(unique = true, nullable = false)
     private String title;
 
+    @Email(regexp = ".+[@].+[\\.].+", message = "Неверный формат email")
     @Column(unique = true, nullable = false, length = 30)
     private String email;
 

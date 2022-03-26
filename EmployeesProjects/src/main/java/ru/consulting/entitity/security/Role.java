@@ -1,6 +1,7 @@
-package ru.consulting.entitity;
+package ru.consulting.entitity.security;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import ru.consulting.entitity.security.Permission;
 
 import java.util.Set;
 import java.util.stream.Collectors;

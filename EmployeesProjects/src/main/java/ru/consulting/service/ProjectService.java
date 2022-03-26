@@ -9,6 +9,8 @@ import ru.consulting.entitity.Project;
 import ru.consulting.repositories.ClientRepo;
 import ru.consulting.repositories.ProjectRepo;
 
+import java.util.Optional;
+
 @Service
 public class ProjectService {
 
@@ -30,7 +32,9 @@ public class ProjectService {
     }
 
     public ProjectDto getById(Long id) {
-        return convertToDto(projectRepo.findById(id).orElseThrow());
+        final Optional<Project> byId = projectRepo.findById(id);
+        System.out.println(byId.get().getClient());
+        return convertToDto(byId.orElseThrow());
     }
 
 

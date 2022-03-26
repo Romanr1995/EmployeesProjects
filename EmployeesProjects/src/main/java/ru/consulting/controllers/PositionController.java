@@ -22,8 +22,7 @@ public class PositionController {
         this.positionService = positionService;
     }
 
-    @RequestMapping(method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/save",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> saveOrUpdate(@RequestBody @Valid PositionDto positionDto) {
         return positionService.saveNewOrUpdate(positionDto);
     }
