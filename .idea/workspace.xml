@@ -5,11 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-dev.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-test.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/ClientDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/EmployeeOnProjectDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/AdminService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/DepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/DepartmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/EmployeeOnProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/EmployeeOnProjectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/PositionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/PositionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/ProjectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/ProjectRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/ProjectRoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/DepartmentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/DepartmentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/EmployeeOnProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/EmployeeOnProject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/security/Permission.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/security/Permission.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/security/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/security/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/EmployeeOnProjectRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/repositories/EmployeeOnProjectRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/ClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/DepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/DepartmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/EmployeeOnProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/EmployeeOnProjectService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/ProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/ProjectService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647736015507</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Добавил профили">
+      <created>1648506999589</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1648506999589</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -320,7 +345,8 @@
     <MESSAGE value="Добавил Permission" />
     <MESSAGE value="добавил котроллеры на Client и Project" />
     <MESSAGE value="Попробовал Soft Delete" />
-    <option name="LAST_COMMIT_MESSAGE" value="Попробовал Soft Delete" />
+    <MESSAGE value="Добавил профили" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил профили" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

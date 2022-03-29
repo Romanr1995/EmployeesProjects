@@ -7,6 +7,7 @@ import ru.consulting.entitity.Client;
 import ru.consulting.entitity.Employee;
 import ru.consulting.entitity.Project;
 import ru.consulting.repositories.ClientRepo;
+import ru.consulting.repositories.EmployeeRepo;
 import ru.consulting.repositories.ProjectRepo;
 
 import java.util.Optional;
@@ -16,11 +17,13 @@ public class ProjectService {
 
     private ProjectRepo projectRepo;
     private ClientRepo clientRepo;
+    private EmployeeRepo employeeRepo;
 
     @Autowired
-    public ProjectService(ProjectRepo projectRepo, ClientRepo clientRepo) {
+    public ProjectService(ProjectRepo projectRepo, ClientRepo clientRepo, EmployeeRepo employeeRepo) {
         this.projectRepo = projectRepo;
         this.clientRepo = clientRepo;
+        this.employeeRepo = employeeRepo;
     }
 
     public void saveNew(Project project) {
@@ -47,6 +50,12 @@ public class ProjectService {
         final Client client = clientRepo.findByEmailIgnoreCase(clientEmail).orElseThrow();
         final Project project = projectRepo.findByTitleIgnoreCase(title).orElseThrow();
         projectRepo.save(project.setClient(client));
+    }
+
+    public void addProjectManager(Long projectId, Long managerId) {
+        final Project project = projectRepo.findById(projectId).orElseThrow();
+        final Employee employee = employeeRepo.findById(managerId).orElseThrow();
+        projectRepo.save(project.setProjectManager(employee));
     }
 
     public static ProjectDto convertToDto(Project project) {

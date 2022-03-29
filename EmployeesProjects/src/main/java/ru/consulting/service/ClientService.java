@@ -2,8 +2,10 @@ package ru.consulting.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.consulting.dto.ClientDto;
 import ru.consulting.dto.ProjectDto;
 import ru.consulting.entitity.Client;
+import ru.consulting.entitity.Project;
 import ru.consulting.repositories.ClientRepo;
 import ru.consulting.repositories.ProjectRepo;
 
@@ -26,8 +28,8 @@ public class ClientService {
         clientRepo.save(client);
     }
 
-    public Client getByTitle(String title) {
-        return clientRepo.findByTitleIgnoreCase(title);
+    public ClientDto getByTitle(String title) {
+        return convertToDto(clientRepo.findByTitleIgnoreCase(title));
     }
 
     public void deleteByPhone(String phone) {
@@ -43,5 +45,10 @@ public class ClientService {
         } else {
             return List.of();
         }
+    }
+
+    public static ClientDto convertToDto(Client client) {
+        final List<String> collectProjectTitle = client.getProjects().stream().map(Project::getTitle).collect(Collectors.toList());
+        return new ClientDto(client.getTitle(), client.getEmail(), client.getPhone(), collectProjectTitle);
     }
 }

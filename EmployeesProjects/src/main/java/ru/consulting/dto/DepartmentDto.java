@@ -19,4 +19,8 @@ public class DepartmentDto {
     @NotBlank(message = "Title необходимо обязательно")
     //добавил,чтобы проверять,что строка не заполнена пробелами,например
     private String title;
+
+    private String depHeadSurname;
+
+    private String higherDepTitle;
 }

@@ -35,8 +35,7 @@ public class EmployeeOnProject {
 
     @Column(nullable = false)
     private LocalDate startWorks;
-
-    @Past(message = "Дата окончания работы на проекте не должна быть позже сегодняшней")
+    
     private LocalDate endWorks;
 
     @ManyToOne(fetch = FetchType.LAZY)

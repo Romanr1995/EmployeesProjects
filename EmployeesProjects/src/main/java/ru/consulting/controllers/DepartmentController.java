@@ -11,17 +11,10 @@ import ru.consulting.dto.DepartmentDto;
 import ru.consulting.service.DepartmentService;
 import ru.consulting.validated.MapValidConstraint;
 
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -44,13 +37,17 @@ public class DepartmentController {
         departmentService.save(departmentDto);
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.ALL_VALUE,
-            headers = "ttt")
-    public List<DepartmentDto> showAllDepartment(HttpServletRequest httpServletRequest,
-                                                 HttpServletResponse httpServletResponse) {
+    @GetMapping
+    public ResponseEntity<List<DepartmentDto>> showAll() {
+        return ResponseEntity.ok(departmentService.getAll());
+    }
 
+//    @ResponseStatus(HttpStatus.OK)
+//    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+//            consumes = MediaType.ALL_VALUE,
+//            headers = "ttt")
+//    public List<DepartmentDto> showAllDepartment(HttpServletRequest httpServletRequest,
+//                                                 HttpServletResponse httpServletResponse) {
 //        EmployeeDto forObject = restTemplate.getForObject("http://localhost:8080/employee/9", EmployeeDto.class);
 //        System.out.println(forObject.getEmail());
 //        restTemplate.delete("http://localhost:8080/employee/10");
@@ -83,8 +80,8 @@ public class DepartmentController {
 //        System.out.println(httpSession.isNew());
 //        System.out.println(httpSession.getId());
 //        System.out.println(httpSession.getAttribute("1"));
-        return departmentService.getAll();
-    }
+//        return departmentService.getAll();
+//    }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("{id}")
@@ -92,11 +89,11 @@ public class DepartmentController {
         departmentService.removeById(id);
     }
 
-    @PostMapping("/save/list")
-    public ResponseEntity<Void> saveNewList(@RequestBody List<@Valid DepartmentDto> departmentDtos) {
-        departmentService.saveAll(departmentDtos);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
+//    @PostMapping("/save/list")
+//    public ResponseEntity<Void> saveNewList(@RequestBody List<@Valid DepartmentDto> departmentDtos) {
+//        departmentService.saveAll(departmentDtos);
+//        return ResponseEntity.status(HttpStatus.CREATED).build();
+//    }
 
     @PutMapping("update/departmenthead/{id}")
     public void updateDepartmentHead(@PathVariable Long id,
@@ -111,25 +108,24 @@ public class DepartmentController {
         departmentService.setHigherDepartment(departmentDtoMap);
     }
 
-    @RequestMapping(value = "/image", method = RequestMethod.GET, produces = "image/jpg")
-    public @ResponseBody
-    byte[] getFile() {
-        try {
-            // Retrieve image from the classpath.
-            InputStream is = this.getClass().getResourceAsStream("/test.jpg");
-
-            // Prepare buffered image.
-            BufferedImage img = ImageIO.read(is);
-
-            // Create a byte array output stream.
-            ByteArrayOutputStream bao = new ByteArrayOutputStream();
-
-            // Write to output stream
-            ImageIO.write(img, "jpg", bao);
-
-            return bao.toByteArray();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    @RequestMapping(value = "/image", method = RequestMethod.GET, produces = "image/jpg")
+//    public @ResponseBody byte[] getFile() {
+//        try {
+//            // Retrieve image from the classpath.
+//            InputStream is = this.getClass().getResourceAsStream("/test.jpg");
+//
+//            // Prepare buffered image.
+//            BufferedImage img = ImageIO.read(is);
+//
+//            // Create a byte array output stream.
+//            ByteArrayOutputStream bao = new ByteArrayOutputStream();
+//
+//            // Write to output stream
+//            ImageIO.write(img, "jpg", bao);
+//
+//            return bao.toByteArray();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 }

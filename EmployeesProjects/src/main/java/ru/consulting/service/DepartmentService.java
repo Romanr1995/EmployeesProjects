@@ -2,14 +2,12 @@ package ru.consulting.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.consulting.dto.DepartmentDto;
 import ru.consulting.entitity.Department;
 import ru.consulting.entitity.Employee;
 import ru.consulting.repositories.DepartmentRepo;
 import ru.consulting.repositories.EmployeeRepo;
 
-import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -38,18 +36,18 @@ public class DepartmentService {
     }
 
     public void removeById(Long id) {
-        if (departmentRepo.existsById(id)){
+        if (departmentRepo.existsById(id)) {
             departmentRepo.deleteById(id);
         } else {
             throw new RuntimeException("Пользователь с id: " + id + " не найден.");
         }
     }
 
-    @Transactional(noRollbackFor = ConstraintViolationException.class)
-    public void saveAll(List<DepartmentDto> departmentDtos) {
-        List<Department> departmentList = departmentDtos.stream().map(this::convertDepartmentDtoToDepartment).collect(Collectors.toList());
-        departmentRepo.saveAll(departmentList);
-    }
+//    @Transactional(noRollbackFor = ConstraintViolationException.class)
+//    public void saveAll(List<DepartmentDto> departmentDtos) {
+//        List<Department> departmentList = departmentDtos.stream().map(this::convertDepartmentDtoToDepartment).collect(Collectors.toList());
+//        departmentRepo.saveAll(departmentList);
+//    }
 
     public void updateDepartmentHead(Long depId, String phone, String email) {
         Department department = departmentRepo.findById(depId).orElseThrow(() ->
@@ -67,7 +65,7 @@ public class DepartmentService {
 
     public void setHigherDepartment(Map<String, DepartmentDto> departmentDtoMap) {
         Department higherDepartment;
-        Department department = null;
+        Department department;
 
         DepartmentDto employeeDtoHigherDepartment = departmentDtoMap.get("higherDepartment");
         Optional<Department> departmentOptional = departmentRepo.findByIdOrTitleIgnoreCase(employeeDtoHigherDepartment.getId(),
@@ -95,6 +93,8 @@ public class DepartmentService {
     }
 
     public DepartmentDto convertDepartmentToDepartmentDto(Department department) {
-        return new DepartmentDto().setId(department.getId()).setTitle(department.getTitle());
+        return new DepartmentDto().setId(department.getId()).setTitle(department.getTitle())
+                .setDepHeadSurname(department.getDepartmentHead().getSurname())
+                .setHigherDepTitle(department.getHigherDepartment().getTitle());
     }
 }

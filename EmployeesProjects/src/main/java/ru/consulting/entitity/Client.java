@@ -52,7 +52,6 @@ public class Client {
     @Pattern(regexp = "89[0-9]{9}", message = "Номер телефона должен состоять из 11 цифр и начинаться с 89")
     private String phone;
 
-
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Project> projects;
 

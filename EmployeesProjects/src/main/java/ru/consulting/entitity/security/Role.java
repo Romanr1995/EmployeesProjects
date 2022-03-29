@@ -1,7 +1,6 @@
 package ru.consulting.entitity.security;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import ru.consulting.entitity.security.Permission;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -9,7 +8,8 @@ import java.util.stream.Collectors;
 public enum Role {
     USER(Set.of(Permission.EMPLOYEE_READ)),
     ADMIN(Set.of(Permission.EMPLOYEE_READ, Permission.EMPLOYEE_WRITE, Permission.EMPLOYEE_PARTIAL_WRITE)),
-    MAINUSER(Set.of(Permission.EMPLOYEE_READ, Permission.EMPLOYEE_PARTIAL_WRITE));
+    MAINUSER(Set.of(Permission.EMPLOYEE_READ, Permission.EMPLOYEE_PARTIAL_WRITE, Permission.PROJECT_WRITE)),
+    ProjectManager(Set.of(Permission.EMPLOYEE_READ, Permission.PROJECT_WRITE));
 
     private final Set<Permission> permissions;
 

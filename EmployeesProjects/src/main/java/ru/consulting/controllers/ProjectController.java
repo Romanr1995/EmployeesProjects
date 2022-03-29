@@ -45,7 +45,12 @@ public class ProjectController {
     }
 
     @PostMapping("addclient/{email}")
-    public void addProject(@PathVariable String email, @RequestParam String title) {
+    public void addClient(@PathVariable String email, @RequestParam String title) {
         projectService.addClient(email, title);
+    }
+
+    @PostMapping("addprojectmanager")
+    public void addProjectManager(@RequestParam Long projectid, @RequestParam Long managerid) {
+        projectService.addProjectManager(projectid, managerid);
     }
 }

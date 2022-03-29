@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.consulting.dto.ClientDto;
 import ru.consulting.dto.ProjectDto;
 import ru.consulting.entitity.Client;
-import ru.consulting.entitity.Project;
 import ru.consulting.service.ClientService;
 
 import javax.validation.Valid;
@@ -32,7 +32,9 @@ public class ClientController {
         }
     }
 
-    @RequestMapping public @ResponseBody Client showByTitle(@RequestParam String title) {
+    @RequestMapping
+    public @ResponseBody
+    ClientDto showByTitle(@RequestParam String title) {
         return clientService.getByTitle(title);
     }
 
