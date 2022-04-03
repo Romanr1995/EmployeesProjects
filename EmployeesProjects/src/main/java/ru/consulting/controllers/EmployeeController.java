@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.consulting.dto.EmployeeDto;
@@ -12,11 +14,13 @@ import ru.consulting.validated.OnCreate;
 import ru.consulting.validated.OnUpdate;
 
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 @Validated
 @RestController
@@ -24,6 +28,8 @@ import java.util.Map;
 public class EmployeeController {
 
     private EmployeeService employeeService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public void setEmployeeService(EmployeeService employeeService) {
@@ -59,6 +65,7 @@ public class EmployeeController {
         return employeeService.getCountEmployees();
     }
 
+    @PreAuthorize("hasAuthority('employee:partial_write')")
     @Validated(OnCreate.class)
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> saveNew(@RequestBody @Valid EmployeeDto employeeDto) {
@@ -66,38 +73,50 @@ public class EmployeeController {
         return ResponseEntity.status(201).build();
     }
 
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable("id") @NotNull Long id) {
-        return employeeService.delete(id);
+    @PreAuthorize("hasAuthority('main_user_write')")
+    @PostMapping("/salary/{id}")
+    public void setOrUpdateSalary(@PathVariable Long id, BigDecimal salary, Principal principal) {
+        employeeService.setSalary(id, salary, principal);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable("id") @NotNull Long id, Principal principal) {
+        return employeeService.delete(id, principal);
+    }
+
+    @PreAuthorize("hasAuthority('employee:partial_write')")
     @Validated(OnUpdate.class)
-    @PutMapping("update")
+    @PutMapping("/update")
     public void update(@RequestBody @Valid EmployeeDto employeeDto) {
         employeeService.update(employeeDto);
     }
 
-    @DeleteMapping("/removes")
-    public void deletes(@RequestBody List<Long> id) {
-        employeeService.removeList(id);
-    }
+//    @DeleteMapping("/removes")
+//    public void deletes(@RequestBody List<Long> id) {
+//        employeeService.removeList(id);
+//    }
 
-    @DeleteMapping("/removes/map")
-    public void deletesByNameAndEmail(@RequestBody @NotEmpty Map<@NotBlank String, @Email String> namesAndEmails) {
-        employeeService.removesMap(namesAndEmails);
-    }
+//    @DeleteMapping("/removes/map")
+//    public void deletesByNameAndEmail(@RequestBody @NotEmpty Map<@NotBlank String, @Email String> namesAndEmails) {
+//        employeeService.removesMap(namesAndEmails);
+//    }
 
     @PutMapping("/update/department/{title}")
     public void updateDepartment(@PathVariable @NotBlank String title, @RequestParam @NotBlank String name,
-                                 @RequestParam @NotBlank String surname) {
-        employeeService.updateDepartment(title, name, surname);
+                                 @RequestParam @NotBlank String surname, Principal principal) {
+        employeeService.updateDepartment(title, name, surname, principal);
     }
 
+    @PreAuthorize("hasAuthority('employee:partial_write')")
     @PostMapping("/insert/position/{title}")
     public void insertPosition(@PathVariable @NotBlank String title, @RequestParam @NotBlank @Pattern(regexp = "89[0-9]{9}") String phone,
-                               @RequestParam(required = false) String email) {
-        employeeService.addPosition(title, phone, email);
+                               @RequestParam(required = false) String email, Principal principal) {
+        employeeService.addPosition(title, phone, email, principal);
+    }
+
+    @PutMapping("/password")
+    public void editPassword(@RequestBody String password, Principal principal) {
+        employeeService.editPassword(passwordEncoder.encode(password), principal);
     }
 
 }

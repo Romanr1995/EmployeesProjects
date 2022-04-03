@@ -41,5 +41,4 @@ public class Department {
     @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
     private List<Employee> employeesOfDepartment;
 
-
 }

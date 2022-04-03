@@ -4,10 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.consulting.validated.OnCreate;
+import ru.consulting.validated.EmpOnProjectAddOrUpdate;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
@@ -26,6 +26,8 @@ public class EmployeeOnProjectDto {
     @NotNull(message = "Для создания или обновления обязательно необходимо внести телефон сотрудника")
     private String empPhone;
 
+    @Null(groups = EmpOnProjectAddOrUpdate.class, message = "Для создания или обновления проектной роли " +
+            "необходимо воспользоваться другим методом")
     private String projectTitle;
 
     private String projectRoleTitle;

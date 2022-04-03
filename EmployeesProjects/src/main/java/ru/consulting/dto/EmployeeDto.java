@@ -27,10 +27,13 @@ public class EmployeeDto {
 
     private String patronymic = "отчества нет";
 
-    @Positive(message = "Зарплата должна быть больше 0")
+    //    @Positive(message = "Зарплата должна быть больше 0")
+    @Null(groups = {OnCreate.class, OnUpdate.class}, message = "Зарплата задается в другом методе")
     private BigDecimal salary;
 
     @Past(message = "Дата приёма на работу не должна быть позже текущей")
+    @NotNull(message = "Необходимо обязательно задать дату устройства на работу.",
+            groups = OnCreate.class)
     private LocalDate dateOfEmployment;
 
     @Email(regexp = ".+[@].+[\\.].+", message = "Неверный формат email")

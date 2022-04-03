@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.*;
 import javax.validation.constraints.AssertFalse;
-import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 @Data
@@ -35,7 +34,7 @@ public class EmployeeOnProject {
 
     @Column(nullable = false)
     private LocalDate startWorks;
-    
+
     private LocalDate endWorks;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -45,7 +44,7 @@ public class EmployeeOnProject {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotFound(action = NotFoundAction.IGNORE)
-    @JoinColumn(name = "project_id")
+    @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
     @ManyToOne(cascade = CascadeType.ALL)

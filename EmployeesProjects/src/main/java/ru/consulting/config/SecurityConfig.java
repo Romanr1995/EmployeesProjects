@@ -48,6 +48,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers(HttpMethod.DELETE, "/project")
                 .hasAnyAuthority(Permission.EMPLOYEE_PARTIAL_WRITE.getPermission())
                 .mvcMatchers("/admin/**").hasAnyAuthority(Permission.EMPLOYEE_WRITE.getPermission())
+                .mvcMatchers(HttpMethod.DELETE, "/employee/**")
+                .hasAnyAuthority(Permission.EMPLOYEE_PARTIAL_WRITE.getPermission())
+                .mvcMatchers(HttpMethod.PUT, "/employee/update/**")
+                .hasAnyAuthority(Permission.EMPLOYEE_PARTIAL_WRITE.getPermission())
                 .anyRequest().authenticated()
                 .and()
                 .logout()
@@ -69,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Bean
-    protected PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
 

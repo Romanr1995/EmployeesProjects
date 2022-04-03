@@ -11,16 +11,17 @@ import ru.consulting.dto.EmployeeDto;
 import ru.consulting.entitity.Department;
 import ru.consulting.entitity.Employee;
 import ru.consulting.entitity.Position;
+import ru.consulting.entitity.security.Role;
 import ru.consulting.repositories.DepartmentRepo;
 import ru.consulting.repositories.EmployeeRepo;
 import ru.consulting.repositories.PositionRepo;
 import ru.consulting.repositories.specifications.EmployeeSpecifications;
 
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -98,13 +99,16 @@ public class EmployeeService {
         employeeRepo.save(convertEmployeeDtoToEmployee(employeeDto));
     }
 
-    public ResponseEntity<?> delete(Long id) {
+    public ResponseEntity<?> delete(Long id, Principal principal) {
+
         try {
-            employeeRepo.deleteById(id);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            if (canDo(id, principal)) {
+                employeeRepo.deleteById(id);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     public void update(EmployeeDto employeeDto) {
@@ -118,9 +122,6 @@ public class EmployeeService {
         if (employeeDto.getPatronymic() != null) {
             employeeById.setPatronymic(employeeDto.getPatronymic());
         }
-        if (employeeDto.getSalary() != null) {
-            employeeById.setSalary(employeeDto.getSalary());
-        }
         if (employeeDto.getDateOfEmployment() != null) {
             employeeById.setDateOfEmployment(employeeDto.getDateOfEmployment());
         }
@@ -133,29 +134,59 @@ public class EmployeeService {
         employeeRepo.save(employeeById);
     }
 
-    public void updateDepartment(String title, String name, String surname) {
+    public void updateDepartment(String title, String name, String surname, Principal principal) {
         Department department = departmentRepo.findByTitleEqualsIgnoreCase(title).orElseThrow();
         Employee employee = employeeRepo
                 .findByNameIgnoreCaseAndSurnameIgnoreCase(name, surname).orElseThrow();
-        employee.setDepartment(department);
-        employeeRepo.save(employee);
-    }
-
-    public void removeList(List<Long> id) {
-        employeeRepo.deleteAllById(id::iterator);
-    }
-
-    public void removesMap(Map<String, String> namesAndEmails) {
-        for (Map.Entry<String, String> stringStringEntry : namesAndEmails.entrySet()) {
-            Employee byNameAndEmail = employeeRepo.findByNameAndEmail(stringStringEntry.getKey(),
-                    stringStringEntry.getValue());
-            if (byNameAndEmail != null) {
-                employeeRepo.delete(byNameAndEmail);
+        if (employee.getDepartment() != null) {
+            try {
+                if (canDo(employee.getId(), principal)) {
+                    employee.setDepartment(department);
+                    employeeRepo.save(employee);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+        } else {
+            employee.setDepartment(department);
+            employeeRepo.save(employee);
         }
     }
 
-    public void addPosition(String title, String phone, String email) {
+    public void setSalary(Long id, BigDecimal salary, Principal principal) {
+
+        final Employee employee = employeeRepo.findById(id).get();
+        if (employee.getDepartment() == null) {
+            throw new RuntimeException("Изменить зарплату может только руководитель департамента," +
+                    "в котором работает сотрудник.Необходимо сначала установить департамент");
+        }
+
+        Employee empPrincipal = employeeRepo.findByEmail(principal.getName()).get();
+        if (isEmployeeUnderManager(empPrincipal, employee)) {
+            employee.setSalary(salary);
+            employeeRepo.save(employee);
+        } else {
+            throw new RuntimeException("Вы не можете изменить зарплату сотруднику, так как " +
+                    "он работает не в Вашем отделе.");
+        }
+
+    }
+
+//    public void removeList(List<Long> id) {
+//        employeeRepo.deleteAllById(id::iterator);
+//    }
+//
+//    public void removesMap(Map<String, String> namesAndEmails) {
+//        for (Map.Entry<String, String> stringStringEntry : namesAndEmails.entrySet()) {
+//            Employee byNameAndEmail = employeeRepo.findByNameAndEmail(stringStringEntry.getKey(),
+//                    stringStringEntry.getValue());
+//            if (byNameAndEmail != null) {
+//                employeeRepo.delete(byNameAndEmail);
+//            }
+//        }
+//    }
+
+    public void addPosition(String title, String phone, String email, Principal principal) {
         Position position = positionRepo.findByTitleIgnoreCase(title);
         if (Objects.isNull(position)) {
             throw new RuntimeException("Position с title: " + title + " не существует.");
@@ -163,8 +194,21 @@ public class EmployeeService {
 
         Employee employee = employeeRepo.findByPhoneOrEmailIgnoreCase(phone, email).orElseThrow(() ->
                 new RuntimeException("Employee с phone: " + phone + " и email: " + email + " не найден."));
-        employee.setPosition(position);
+        try {
+            if (canDo(employee.getId(), principal)) {
+                employee.setPosition(position);
+                employeeRepo.save(employee);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+    }
+
+    public void editPassword(String newPassword, Principal principal) {
+        String userEmail = principal.getName();
+        Employee employee = employeeRepo.findByEmail(userEmail).orElseThrow();
+        employee.setPassword(newPassword);
         employeeRepo.save(employee);
     }
 
@@ -177,5 +221,49 @@ public class EmployeeService {
     public Employee convertEmployeeDtoToEmployee(EmployeeDto employeeDto) {
         return new Employee(employeeDto.getName(), employeeDto.getSurname(), employeeDto.getPatronymic(),
                 employeeDto.getSalary(), employeeDto.getDateOfEmployment(), employeeDto.getEmail(), employeeDto.getPhone());
+    }
+
+    public boolean canDo(Long id, Principal principal) throws Exception {
+        String emailPrincipal = principal.getName();
+        Employee empPrincipal = employeeRepo.findByEmail(emailPrincipal).orElseThrow();
+        Employee employee = employeeRepo.findById(id).orElseThrow();
+
+        if (empPrincipal.getRole().contains(Role.ADMIN)) {
+            return true;
+        } else {
+            if (isEmployeeUnderManager(empPrincipal, employee)) {
+                return true;
+            } else {
+                throw new Exception("У вас нет прав для действий с данным сотрудником." +
+                        "Сотрудик работает не в Вашем отделе.");
+            }
+        }
+    }
+
+    public static boolean isEmployeeUnderManager(Employee manager, Employee employee) {
+        Department underManagementDepartment = manager.getUnderManagement();
+        List<Employee> employeesOfUnderManagementDepartment = underManagementDepartment.getEmployeesOfDepartment();
+
+        if (employeesOfUnderManagementDepartment.contains(employee)) {
+            return true;
+        } else {
+            List<Department> subDepartments = underManagementDepartment.getSubDepartments();
+            for (Department subDepartment : subDepartments) {
+                if (subDepartment.getEmployeesOfDepartment().contains(employee)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public List<Department> recursionDepartment(Department department) {
+        List<Department> departments1 = department.getSubDepartments();
+        if (departments1.size() > 0) {
+            for (Department department1 : departments1) {
+                departments1.addAll(recursionDepartment(department1));
+            }
+        }
+        return departments1;
     }
 }

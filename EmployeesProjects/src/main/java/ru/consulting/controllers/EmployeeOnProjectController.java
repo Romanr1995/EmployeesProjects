@@ -1,12 +1,12 @@
 package ru.consulting.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.consulting.dto.EmployeeOnProjectDto;
 import ru.consulting.service.EmployeeOnProjectService;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -22,8 +22,14 @@ public class EmployeeOnProjectController {
 
     @PreAuthorize("hasAuthority('project_write')")
     @PostMapping
-    public void addNewOrUpdate(@RequestBody EmployeeOnProjectDto employeeOnProjectDto) {
-        employeeOnProjectService.addOrUpdate(employeeOnProjectDto);
+    public void addNewOrUpdate(@RequestBody EmployeeOnProjectDto employeeOnProjectDto, Principal principal) {
+        employeeOnProjectService.addOrUpdate(employeeOnProjectDto, principal);
+    }
+
+    @PreAuthorize("hasAuthority('project_write')")
+    @PutMapping("projectRole/{id}")
+    public void updateProjectRole(@RequestParam String roleTitle, @PathVariable Long id, Principal principal) {
+        employeeOnProjectService.updateProjectRole(roleTitle, id, principal);
     }
 
     @PreAuthorize("hasAuthority('project_write')")

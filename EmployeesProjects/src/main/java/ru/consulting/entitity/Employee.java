@@ -37,7 +37,7 @@ public class Employee {
     @Column(columnDefinition = "varchar(50)")
     private String patronymic = "Отчества нет";
 
-    @Column(nullable = false, precision = 10, scale = 2)
+    @Column(precision = 10, scale = 2)
     private BigDecimal salary;
 
     @Column(nullable = false)
@@ -51,14 +51,15 @@ public class Employee {
     private String phone;
 
     @Column(name = "password")
-    private String password = "$2a$10$TLzjGWAgGw/xj7WhbY.59O6qAK3GDq.PkHS1mi1c0OsITC6855wIu";
+    private String password = "$2a$10$i/mWpPNpx1YDCWtdj6yefubKLr3ZUZej7eZdmQ.PmsC6mHSVPFE9q";
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
     private Status status = Status.ACTIVE;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "employees_roles", joinColumns = @JoinColumn(name = "employee_id"))
+    @CollectionTable(name = "employees_roles", joinColumns = @JoinColumn(name = "employee_id"),
+            uniqueConstraints = @UniqueConstraint(columnNames = "role"))
     @Enumerated(EnumType.STRING)
     private Set<Role> role = Set.of(Role.USER);
 
@@ -71,6 +72,9 @@ public class Employee {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
     private Department department;
+
+    @OneToOne(mappedBy = "departmentHead")
+    private Department underManagement;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "position_id")
