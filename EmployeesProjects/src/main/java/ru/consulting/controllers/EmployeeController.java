@@ -75,7 +75,7 @@ public class EmployeeController {
 
     @PreAuthorize("hasAuthority('main_user_write')")
     @PostMapping("/salary/{id}")
-    public void setOrUpdateSalary(@PathVariable Long id, BigDecimal salary, Principal principal) {
+    public void setOrUpdateSalary(@PathVariable Long id,@RequestParam BigDecimal salary, Principal principal) {
         employeeService.setSalary(id, salary, principal);
     }
 

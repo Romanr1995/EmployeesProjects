@@ -11,6 +11,7 @@ import ru.consulting.entitity.EmployeeOnProject;
 import ru.consulting.entitity.Project;
 import ru.consulting.entitity.ProjectRole;
 import ru.consulting.entitity.security.Role;
+import ru.consulting.exception_handling.NoSuchEntityException;
 import ru.consulting.repositories.EmployeeOnProjectRepo;
 import ru.consulting.repositories.EmployeeRepo;
 import ru.consulting.repositories.ProjectRepo;
@@ -50,7 +51,7 @@ public class EmployeeOnProjectService {
     @Validated(EmployeeOnProjectRepo.class)
     public void addOrUpdate(@Valid EmployeeOnProjectDto employeeOnProjectDto, Principal principal) {
         String emailPrincipal = principal.getName();
-        Employee empPrincipal = employeeRepo.findByEmail(emailPrincipal).orElseThrow();
+        Employee empPrincipal = employeeRepo.findByEmail(emailPrincipal).get();
 
         Employee repoByPhone = employeeRepo.findByPhone(employeeOnProjectDto.getEmpPhone());
         EmployeeOnProject empOnProjectByPhoneAndStartDate = employeeOnProjectRepo.getByEmployeePhone(repoByPhone.getPhone(),
@@ -64,7 +65,9 @@ public class EmployeeOnProjectService {
         }
 
         if (employeeOnProjectDto.getProjectTitle() != null) {
-            Project project = projectRepo.findByTitleIgnoreCase(employeeOnProjectDto.getProjectTitle()).orElseThrow();
+            Project project = projectRepo.findByTitleIgnoreCase(employeeOnProjectDto.getProjectTitle()).orElseThrow(
+                    () -> new NoSuchEntityException("Project with title: " + employeeOnProjectDto.getProjectTitle() +
+                            " not found"));
             if (canDo(repoByPhone, empPrincipal, project)) {
                 empOnProjectByPhoneAndStartDate.setProject(project);
             }

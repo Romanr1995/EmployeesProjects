@@ -6,6 +6,7 @@ import ru.consulting.dto.ProjectDto;
 import ru.consulting.entitity.Client;
 import ru.consulting.entitity.Employee;
 import ru.consulting.entitity.Project;
+import ru.consulting.exception_handling.NoSuchEntityException;
 import ru.consulting.repositories.ClientRepo;
 import ru.consulting.repositories.EmployeeRepo;
 import ru.consulting.repositories.ProjectRepo;
@@ -36,25 +37,28 @@ public class ProjectService {
 
     public ProjectDto getById(Long id) {
         final Optional<Project> byId = projectRepo.findById(id);
-        System.out.println(byId.get().getClient());
-        return convertToDto(byId.orElseThrow());
+        return convertToDto(byId.orElseThrow(() -> new NoSuchEntityException(id, Project.class)));
     }
 
 
-    public ProjectDto getByTitle(String title) throws Exception {
+    public ProjectDto getByTitle(String title) {
         return convertToDto(projectRepo.findByTitleIgnoreCase(title).orElseThrow(() ->
-                new Exception("Project с title: " + title + " не найден")));
+                new NoSuchEntityException("Project с title: " + title + " не найден")));
     }
 
     public void addClient(String clientEmail, String title) {
-        final Client client = clientRepo.findByEmailIgnoreCase(clientEmail).orElseThrow();
-        final Project project = projectRepo.findByTitleIgnoreCase(title).orElseThrow();
+        final Client client = clientRepo.findByEmailIgnoreCase(clientEmail).orElseThrow(
+                () -> new NoSuchEntityException("Client with email: " + clientEmail + " not found."));
+        final Project project = projectRepo.findByTitleIgnoreCase(title).orElseThrow(
+                () -> new NoSuchEntityException("Project with title: " + title + " not found."));
         projectRepo.save(project.setClient(client));
     }
 
     public void addProjectManager(Long projectId, Long managerId) {
-        final Project project = projectRepo.findById(projectId).orElseThrow();
-        final Employee employee = employeeRepo.findById(managerId).orElseThrow();
+        final Project project = projectRepo.findById(projectId).orElseThrow(
+                () -> new NoSuchEntityException(projectId, Project.class));
+        final Employee employee = employeeRepo.findById(managerId).orElseThrow(
+                () -> new NoSuchEntityException(managerId, Employee.class));
         projectRepo.save(project.setProjectManager(employee));
     }
 

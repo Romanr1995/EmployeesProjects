@@ -5,13 +5,11 @@ import org.springframework.stereotype.Service;
 import ru.consulting.dto.DepartmentDto;
 import ru.consulting.entitity.Department;
 import ru.consulting.entitity.Employee;
+import ru.consulting.exception_handling.*;
 import ru.consulting.repositories.DepartmentRepo;
 import ru.consulting.repositories.EmployeeRepo;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,7 +37,7 @@ public class DepartmentService {
         if (departmentRepo.existsById(id)) {
             departmentRepo.deleteById(id);
         } else {
-            throw new RuntimeException("Пользователь с id: " + id + " не найден.");
+            throw new NoSuchEntityException(id, Department.class);
         }
     }
 
@@ -51,13 +49,16 @@ public class DepartmentService {
 
     public void updateDepartmentHead(Long depId, String phone, String email) {
         Department department = departmentRepo.findById(depId).orElseThrow(() ->
-                new RuntimeException("Department с id: " + depId + " не найден"));
+                new NoSuchEntityException(depId, Department.class));
         Employee depHead;
         if (Objects.nonNull(email)) {
             depHead = employeeRepo.findByPhoneOrEmailIgnoreCase(phone, email).orElseThrow(() ->
-                    new RuntimeException("Employee с phone: " + phone + " и email: " + email + " не найден"));
+                    new NoSuchEntityException("Employee с phone: " + phone + " и email: " + email + " не найден"));
         } else {
             depHead = employeeRepo.findByPhone(phone);
+            if (depHead == null) {
+                throw new NoSuchEntityException("Employee с phone: " + phone + " не найден");
+            }
         }
         department.setDepartmentHead(depHead);
         departmentRepo.save(department);
@@ -74,7 +75,7 @@ public class DepartmentService {
             higherDepartment = departmentOptional.get();
         } else {
             if (employeeDtoHigherDepartment.getTitle() == null) {
-                throw new RuntimeException("Ошибка.Такой Department еще не существует." +
+                throw new NoSuchEntityException("Ошибка.Такой Department еще не существует." +
                         "Для создания нового Department должно обязательно быть задано title.");
             } else {
                 higherDepartment = departmentRepo.save(convertDepartmentDtoToDepartment(employeeDtoHigherDepartment));
@@ -82,10 +83,25 @@ public class DepartmentService {
         }
         DepartmentDto employeeDepartment = departmentDtoMap.get("department");
         department = departmentRepo.findByIdOrTitleIgnoreCase(employeeDepartment.getId(),
-                employeeDepartment.getTitle()).orElseThrow(() -> new RuntimeException("Department не существует"));
+                employeeDepartment.getTitle()).orElseThrow(() -> new NoSuchEntityException("Department не существует"));
 
         department.setHigherDepartment(higherDepartment);
         departmentRepo.save(department);
+    }
+
+    public static List<Department> recursionDepartment(Department department) {
+
+        if (department.getSubDepartments().size() == 0) {
+            return List.of();
+        } else {
+            final List<Department> subDepartments = department.getSubDepartments();
+            List<Department> result = new ArrayList<>(subDepartments);
+            for (Department subDepartment : subDepartments) {
+                final List<Department> departments = recursionDepartment(subDepartment);
+                result.addAll(departments);
+            }
+            return result;
+        }
     }
 
     public Department convertDepartmentDtoToDepartment(DepartmentDto departmentDto) {

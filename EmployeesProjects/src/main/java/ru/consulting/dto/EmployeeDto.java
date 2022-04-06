@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class EmployeeDto {
 
     @NotNull(message = "id должен быть задан", groups = OnUpdate.class)
-    @Null(message = "для создания id не требуется", groups = OnCreate.class)
+    @Null(message = "Для создания id не требуется", groups = OnCreate.class)
     private Long id;
 
     @NotBlank(message = "Необходимо указать имя", groups = OnCreate.class)

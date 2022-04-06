@@ -27,8 +27,8 @@ public class ClientController {
         try {
             clientService.saveNew(client);
             return ResponseEntity.ok().build();
-        } catch (Throwable throwable) {
-            return new ResponseEntity<>(throwable.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 

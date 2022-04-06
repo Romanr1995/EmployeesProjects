@@ -41,4 +41,11 @@ public class Department {
     @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
     private List<Employee> employeesOfDepartment;
 
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

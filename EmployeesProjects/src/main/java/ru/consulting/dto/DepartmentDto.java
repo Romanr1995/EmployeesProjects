@@ -12,11 +12,11 @@ import javax.validation.constraints.Null;
 @NoArgsConstructor
 public class DepartmentDto {
 
-    @Null
+    @Null(message = "При добавлении Department id не задается")
     private Long id;
 
     //    @NotEmpty
-    @NotBlank(message = "Title необходимо обязательно")
+    @NotBlank(message = "Title должно быть не пустым")
     //добавил,чтобы проверять,что строка не заполнена пробелами,например
     private String title;
 

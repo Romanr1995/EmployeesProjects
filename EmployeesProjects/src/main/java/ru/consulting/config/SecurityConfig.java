@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .mvcMatchers("/").permitAll()
                 .mvcMatchers(HttpMethod.GET, "/department/**", "/position/**")
-                .hasAnyAuthority(Permission.EMPLOYEE_WRITE.getPermission(), Permission.PROJECT_WRITE.getPermission())
+                .hasAnyAuthority(Permission.EMPLOYEE_PARTIAL_WRITE.getPermission(), Permission.PROJECT_WRITE.getPermission())
                 .mvcMatchers(HttpMethod.POST, "/department", "/client/**", "/position/**")
                 .hasAuthority(Permission.EMPLOYEE_WRITE.getPermission())
                 .mvcMatchers(HttpMethod.PUT, "/department/**").hasAuthority(Permission.EMPLOYEE_WRITE.getPermission())

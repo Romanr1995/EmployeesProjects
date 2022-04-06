@@ -13,7 +13,6 @@ import ru.consulting.validated.MapValidConstraint;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +23,6 @@ import java.util.Map;
 public class DepartmentController {
 
     private DepartmentService departmentService;
-
     private RestTemplate restTemplate = new RestTemplate();
 
     @Autowired
@@ -85,7 +83,7 @@ public class DepartmentController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("{id}")
-    public void deleteById(@PathVariable @NotNull Long id) {
+    public void deleteById(@PathVariable Long id) {
         departmentService.removeById(id);
     }
 

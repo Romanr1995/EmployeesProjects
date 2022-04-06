@@ -2,12 +2,10 @@ package ru.consulting;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 import ru.consulting.entitity.Department;
 import ru.consulting.entitity.Employee;
 import ru.consulting.entitity.Position;
 import ru.consulting.repositories.*;
-import ru.consulting.service.ServiceClass;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -22,13 +20,12 @@ public class TestClassCommand implements CommandLineRunner {
     private ProjectRepo projectRepo;
     private ProjectRoleRepo projectRoleRepo;
     private TestRepo testRepo;
-    private ServiceClass serviceClass;
 
     @Autowired
     public TestClassCommand(ClientRepo clientRepo, DepartmentRepo departmentRepo,
                             EmployeeOnProjectRepo employeeOnProjectRepo, EmployeeRepo employeeRepo,
                             PositionRepo positionRepo, ProjectRepo projectRepo, ProjectRoleRepo projectRoleRepo,
-                            TestRepo testRepo, ServiceClass serviceClass) {
+                            TestRepo testRepo) {
         this.clientRepo = clientRepo;
         this.departmentRepo = departmentRepo;
         this.employeeOnProjectRepo = employeeOnProjectRepo;
@@ -37,7 +34,6 @@ public class TestClassCommand implements CommandLineRunner {
         this.projectRepo = projectRepo;
         this.projectRoleRepo = projectRoleRepo;
         this.testRepo = testRepo;
-        this.serviceClass = serviceClass;
     }
 
     @Override
@@ -262,7 +258,6 @@ public class TestClassCommand implements CommandLineRunner {
 
         Department subIt = new Department();
         subIt.setTitle("subIT");
-        subIt.setHigherDepartment(serviceClass.getDepartmentByTitle("It"));
 //        serviceClass.addDepartment(subIt);
 
         Employee subItBoss = new Employee();

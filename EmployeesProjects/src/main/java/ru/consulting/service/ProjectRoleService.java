@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ru.consulting.dto.ProjectRoleDto;
 import ru.consulting.entitity.EmployeeOnProject;
 import ru.consulting.entitity.ProjectRole;
+import ru.consulting.exception_handling.NoSuchEntityException;
 import ru.consulting.repositories.ProjectRoleRepo;
 
 import javax.persistence.EntityManager;
@@ -31,7 +32,8 @@ public class ProjectRoleService {
 
 
     public void deleteByTitle(String title) {
-        final ProjectRole projectRole = projectRoleRepo.findByTitleIgnoreCase(title).orElseThrow();
+        final ProjectRole projectRole = projectRoleRepo.findByTitleIgnoreCase(title).orElseThrow(
+                () -> new NoSuchEntityException("ProjectRole with title: " + title + " not found."));
         projectRoleRepo.delete(projectRole);
     }
 
@@ -51,7 +53,7 @@ public class ProjectRoleService {
     private Iterable<ProjectRoleDto> convertProjectRoleToDtoIterable(Iterable<ProjectRole> projectRoleIterable) {
 
         final Iterator<ProjectRole> iterator = projectRoleIterable.iterator();
-        return () -> new Iterator<ProjectRoleDto>() {
+        return () -> new Iterator<>() {
             @Override
             public boolean hasNext() {
                 return iterator.hasNext();

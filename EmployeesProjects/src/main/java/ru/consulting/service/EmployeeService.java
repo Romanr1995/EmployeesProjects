@@ -12,6 +12,7 @@ import ru.consulting.entitity.Department;
 import ru.consulting.entitity.Employee;
 import ru.consulting.entitity.Position;
 import ru.consulting.entitity.security.Role;
+import ru.consulting.exception_handling.NoSuchEntityException;
 import ru.consulting.repositories.DepartmentRepo;
 import ru.consulting.repositories.EmployeeRepo;
 import ru.consulting.repositories.PositionRepo;
@@ -87,7 +88,7 @@ public class EmployeeService {
 
     public EmployeeDto getEmployeeDtoById(Long id) {
         Employee employee = employeeRepo.findById(id).orElseThrow(() ->
-                new RuntimeException("Employee с id: " + id + " не существует."));
+                new NoSuchEntityException(id, Employee.class));
         return convertEmployeeToEmployeeDto(employee);
     }
 
@@ -112,7 +113,9 @@ public class EmployeeService {
     }
 
     public void update(EmployeeDto employeeDto) {
-        Employee employeeById = employeeRepo.findById(employeeDto.getId()).orElseThrow();
+        Employee employeeById = employeeRepo.findById(employeeDto.getId()).orElseThrow(
+                () -> new NoSuchEntityException(employeeDto.getId(), Employee.class)
+        );
         if (employeeDto.getName() != null) {
             employeeById.setName(employeeDto.getName());
         }
@@ -135,17 +138,17 @@ public class EmployeeService {
     }
 
     public void updateDepartment(String title, String name, String surname, Principal principal) {
-        Department department = departmentRepo.findByTitleEqualsIgnoreCase(title).orElseThrow();
+        Department department = departmentRepo.findByTitleEqualsIgnoreCase(title).orElseThrow(
+                () -> new NoSuchEntityException("Department with title: " + title + " not found.")
+        );
         Employee employee = employeeRepo
-                .findByNameIgnoreCaseAndSurnameIgnoreCase(name, surname).orElseThrow();
+                .findByNameIgnoreCaseAndSurnameIgnoreCase(name, surname).orElseThrow(
+                        () -> new NoSuchEntityException("Employee with name: " + name +
+                                " and surname: " + surname + " not found."));
         if (employee.getDepartment() != null) {
-            try {
-                if (canDo(employee.getId(), principal)) {
-                    employee.setDepartment(department);
-                    employeeRepo.save(employee);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (canDo(employee.getId(), principal)) {
+                employee.setDepartment(department);
+                employeeRepo.save(employee);
             }
         } else {
             employee.setDepartment(department);
@@ -189,25 +192,20 @@ public class EmployeeService {
     public void addPosition(String title, String phone, String email, Principal principal) {
         Position position = positionRepo.findByTitleIgnoreCase(title);
         if (Objects.isNull(position)) {
-            throw new RuntimeException("Position с title: " + title + " не существует.");
+            throw new NoSuchEntityException("Position с title: " + title + " не существует.");
         }
 
         Employee employee = employeeRepo.findByPhoneOrEmailIgnoreCase(phone, email).orElseThrow(() ->
-                new RuntimeException("Employee с phone: " + phone + " и email: " + email + " не найден."));
-        try {
-            if (canDo(employee.getId(), principal)) {
-                employee.setPosition(position);
-                employeeRepo.save(employee);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+                new NoSuchEntityException("Employee с phone: " + phone + " и email: " + email + " не найден."));
+        if (canDo(employee.getId(), principal)) {
+            employee.setPosition(position);
+            employeeRepo.save(employee);
         }
-
     }
 
     public void editPassword(String newPassword, Principal principal) {
         String userEmail = principal.getName();
-        Employee employee = employeeRepo.findByEmail(userEmail).orElseThrow();
+        Employee employee = employeeRepo.findByEmail(userEmail).get();
         employee.setPassword(newPassword);
         employeeRepo.save(employee);
     }
@@ -223,10 +221,12 @@ public class EmployeeService {
                 employeeDto.getSalary(), employeeDto.getDateOfEmployment(), employeeDto.getEmail(), employeeDto.getPhone());
     }
 
-    public boolean canDo(Long id, Principal principal) throws Exception {
+    public boolean canDo(Long id, Principal principal) {
         String emailPrincipal = principal.getName();
-        Employee empPrincipal = employeeRepo.findByEmail(emailPrincipal).orElseThrow();
-        Employee employee = employeeRepo.findById(id).orElseThrow();
+        Employee empPrincipal = employeeRepo.findByEmail(emailPrincipal).get();
+        Employee employee = employeeRepo.findById(id).orElseThrow(
+                () -> new NoSuchEntityException(id, Employee.class)
+        );
 
         if (empPrincipal.getRole().contains(Role.ADMIN)) {
             return true;
@@ -234,7 +234,7 @@ public class EmployeeService {
             if (isEmployeeUnderManager(empPrincipal, employee)) {
                 return true;
             } else {
-                throw new Exception("У вас нет прав для действий с данным сотрудником." +
+                throw new RuntimeException("У вас нет прав для действий с данным сотрудником." +
                         "Сотрудик работает не в Вашем отделе.");
             }
         }
@@ -247,7 +247,7 @@ public class EmployeeService {
         if (employeesOfUnderManagementDepartment.contains(employee)) {
             return true;
         } else {
-            List<Department> subDepartments = underManagementDepartment.getSubDepartments();
+            List<Department> subDepartments = DepartmentService.recursionDepartment(underManagementDepartment);
             for (Department subDepartment : subDepartments) {
                 if (subDepartment.getEmployeesOfDepartment().contains(employee)) {
                     return true;
@@ -257,13 +257,4 @@ public class EmployeeService {
         return false;
     }
 
-    public List<Department> recursionDepartment(Department department) {
-        List<Department> departments1 = department.getSubDepartments();
-        if (departments1.size() > 0) {
-            for (Department department1 : departments1) {
-                departments1.addAll(recursionDepartment(department1));
-            }
-        }
-        return departments1;
-    }
 }
