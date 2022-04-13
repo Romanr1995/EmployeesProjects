@@ -5,21 +5,44 @@ services:
     image: postgres:14.2
     environment:
       POSTGRES_DB: emps
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Roman1995!
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - data_volume:/var/lib/postgresql/data
+    deploy:
+      placement:
+        constraints: [node.role == manager]
   app:
     container_name: employee-app
     image: rnozdrachev/emp-project:1.1.1
     depends_on:
         - db
-    restart: unless-stopped
+    deploy:
+      mode: replicated
+      replicas: 3
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: continue
+        monitor: 60s
+        max_failure_ratio: 0.3
+      placement:
+        constraints: [ node.role == manager ]
+#    restart: unless-stopped
     ports:
         - "8761:8761"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/emps
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: Roman1995!
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/emps
+#      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+#      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
 volumes:
   data_volume:

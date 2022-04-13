@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/SecuriryInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/SecuriryInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/DepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/DepartmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-dev.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-test.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649223331260</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Добавил docker и docker-compose.yml">
+      <created>1649845605103</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1649845605103</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -357,7 +361,8 @@
     <MESSAGE value="Доработал Service и Security" />
     <MESSAGE value="Добавил Security в Employee" />
     <MESSAGE value="Добавил обработчик исключений ControllerAdvice" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил обработчик исключений ControllerAdvice" />
+    <MESSAGE value="Добавил docker и docker-compose.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил docker и docker-compose.yml" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
