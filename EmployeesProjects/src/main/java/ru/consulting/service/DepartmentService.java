@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.consulting.dto.DepartmentDto;
 import ru.consulting.entitity.Department;
 import ru.consulting.entitity.Employee;
-import ru.consulting.exception_handling.*;
+import ru.consulting.exception_handling.NoSuchEntityException;
 import ru.consulting.repositories.DepartmentRepo;
 import ru.consulting.repositories.EmployeeRepo;
 
@@ -109,8 +109,12 @@ public class DepartmentService {
     }
 
     public DepartmentDto convertDepartmentToDepartmentDto(Department department) {
+        final Employee departmentHead = department.getDepartmentHead();
+        final Department higherDepartment = department.getHigherDepartment();
+        String depHeadSurname = (departmentHead == null) ? "не задан" : departmentHead.getSurname();
+        String higherDepTitle = (higherDepartment == null) ? "не задан" : higherDepartment.getTitle();
         return new DepartmentDto().setId(department.getId()).setTitle(department.getTitle())
-                .setDepHeadSurname(department.getDepartmentHead().getSurname())
-                .setHigherDepTitle(department.getHigherDepartment().getTitle());
+                .setDepHeadSurname(depHeadSurname)
+                .setHigherDepTitle(higherDepTitle);
     }
 }

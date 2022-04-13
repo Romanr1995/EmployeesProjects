@@ -1,0 +1,25 @@
+version: '3'
+services:
+  db:
+    container_name: db
+    image: postgres:14.2
+    environment:
+      POSTGRES_DB: emps
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Roman1995!
+    volumes:
+      - data_volume:/var/lib/postgresql/data
+  app:
+    container_name: employee-app
+    image: rnozdrachev/emp-project:1.1.1
+    depends_on:
+        - db
+    restart: unless-stopped
+    ports:
+        - "8761:8761"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/emps
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: Roman1995!
+volumes:
+  data_volume:
