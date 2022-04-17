@@ -4,11 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="">
+    <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="Обновил docker-compose.yml">
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/all-in-one.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/postgres-deploy.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/postgres-service.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/redis-deploy.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/redis-service.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/result-app-service.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/result-deploy.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/voting-app-deploy.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/voting-app-service.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/worker-deploy.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/employees-deploy-project.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/employees-service-project.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/kubectl-start-employees-project.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/postgres-deploy-emp.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/postgres-service-emp.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-dev.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,12 +58,15 @@
     </option>
   </component>
   <component name="ProjectId" id="24Zwj0vEsTVwDLVxgKAPSV7P521" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -60,7 +75,7 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -256,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649845605103</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Обновил docker-compose.yml">
+      <created>1649862977487</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1649862977487</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -346,6 +368,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Добавил Service" />
     <MESSAGE value="добавил валидацию" />
     <MESSAGE value="обновил валидацию везде" />
@@ -362,7 +385,8 @@
     <MESSAGE value="Добавил Security в Employee" />
     <MESSAGE value="Добавил обработчик исключений ControllerAdvice" />
     <MESSAGE value="Добавил docker и docker-compose.yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил docker и docker-compose.yml" />
+    <MESSAGE value="Обновил docker-compose.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновил docker-compose.yml" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
