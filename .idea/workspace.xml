@@ -5,22 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="Обновил docker-compose.yml">
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/all-in-one.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/postgres-deploy.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/postgres-service.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/redis-deploy.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/redis-service.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/result-app-service.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/result-deploy.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/voting-app-deploy.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/voting-app-service.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/Rotoro-demo1/worker-deploy.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/employees-deploy-project.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/employees-service-project.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/kubectl-start-employees-project.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/postgres-deploy-emp.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/postgres-service-emp.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/psgr-test-pod.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/pv-definition.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/pvc-definition.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/employees-deploy-project.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/employees-service-project.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/kubectl-start-employees-project.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/kubectl-start-employees-project.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/postgres-deploy-emp.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/postgres-service-emp.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
