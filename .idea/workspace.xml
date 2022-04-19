@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="Обновил docker-compose.yml">
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/psgr-test-pod.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/pv-definition.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/pvc-definition.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EmployeesProjects/employees-deploy-project.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/EmployeesProjects/employees-service-project.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/kubectl-start-employees-project.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/kubectl-start-employees-project.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EmployeesProjects/postgres-deploy-emp.yaml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/EmployeesProjects/postgres-service-emp.yaml" beforeDir="false" />
     </list>
@@ -34,6 +30,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -52,6 +49,7 @@
   </component>
   <component name="ProjectId" id="24Zwj0vEsTVwDLVxgKAPSV7P521" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
