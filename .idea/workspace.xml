@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/DepartmentServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/DepartmentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/DepartmentServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +83,7 @@
       <command value="mvn dependency:analyze" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.DepartmentServiceTest.update_department_head">
+  <component name="RunManager" selected="JUnit.DepartmentServiceTest">
     <configuration name="DepartmentServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EmployeesProjects" />
       <extension name="coverage">
@@ -97,54 +95,6 @@
       <option name="PACKAGE_NAME" value="ru.consulting.service" />
       <option name="MAIN_CLASS_NAME" value="ru.consulting.service.DepartmentServiceTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DepartmentServiceTest.delete_exist_department" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="EmployeesProjects" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.consulting.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.consulting.service" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.DepartmentServiceTest" />
-      <option name="METHOD_NAME" value="delete_exist_department" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DepartmentServiceTest.delete_non_exist_department" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="EmployeesProjects" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.consulting.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.consulting.service" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.DepartmentServiceTest" />
-      <option name="METHOD_NAME" value="delete_non_exist_department" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DepartmentServiceTest.delete_with_id_null" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="EmployeesProjects" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.consulting.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.consulting.service" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.DepartmentServiceTest" />
-      <option name="METHOD_NAME" value="delete_with_id_null" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -165,13 +115,61 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DepartmentServiceTest.update_department_head_only_empEmail_null" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EmployeesProjects" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.consulting.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.consulting.service" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.DepartmentServiceTest" />
+      <option name="METHOD_NAME" value="update_department_head_only_empEmail_null" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DepartmentServiceTest.update_department_head_with_depId_no_exist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EmployeesProjects" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.consulting.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.consulting.service" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.DepartmentServiceTest" />
+      <option name="METHOD_NAME" value="update_department_head_with_depId_no_exist" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DepartmentServiceTest.update_department_head_with_empPhone_and_empEmail_is_null" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EmployeesProjects" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.consulting.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.consulting.service" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.DepartmentServiceTest" />
+      <option name="METHOD_NAME" value="update_department_head_with_empPhone_and_empEmail_is_null" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DepartmentServiceTest.update_department_head" />
-        <item itemvalue="JUnit.DepartmentServiceTest.delete_with_id_null" />
         <item itemvalue="JUnit.DepartmentServiceTest" />
-        <item itemvalue="JUnit.DepartmentServiceTest.delete_non_exist_department" />
-        <item itemvalue="JUnit.DepartmentServiceTest.delete_exist_department" />
+        <item itemvalue="JUnit.DepartmentServiceTest.update_department_head" />
+        <item itemvalue="JUnit.DepartmentServiceTest.update_department_head_with_empPhone_and_empEmail_is_null" />
+        <item itemvalue="JUnit.DepartmentServiceTest.update_department_head_only_empEmail_null" />
+        <item itemvalue="JUnit.DepartmentServiceTest.update_department_head_with_depId_no_exist" />
       </list>
     </recent_temporary>
   </component>
@@ -310,7 +308,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649862977487</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Добавил тесты на DepartmentService">
+      <created>1650539283313</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1650539283313</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -418,7 +423,8 @@
     <MESSAGE value="Добавил обработчик исключений ControllerAdvice" />
     <MESSAGE value="Добавил docker и docker-compose.yml" />
     <MESSAGE value="Обновил docker-compose.yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Обновил docker-compose.yml" />
+    <MESSAGE value="Добавил тесты на DepartmentService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил тесты на DepartmentService" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
