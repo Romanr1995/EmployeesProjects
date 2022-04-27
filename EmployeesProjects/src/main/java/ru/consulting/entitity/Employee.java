@@ -58,8 +58,7 @@ public class Employee {
     private Status status = Status.ACTIVE;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "employees_roles", joinColumns = @JoinColumn(name = "employee_id"),
-            uniqueConstraints = @UniqueConstraint(columnNames = "role"))
+    @CollectionTable(name = "employees_roles", joinColumns = @JoinColumn(name = "employee_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> role = Set.of(Role.USER);
 

@@ -48,4 +48,8 @@ public class Department {
                 ", title='" + title + '\'' +
                 '}';
     }
+
+    public Department(String title) {
+        this.title = title;
+    }
 }

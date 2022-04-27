@@ -23,4 +23,8 @@ public class DepartmentDto {
     private String depHeadSurname;
 
     private String higherDepTitle;
+
+    public DepartmentDto(String title) {
+        this.title = title;
+    }
 }

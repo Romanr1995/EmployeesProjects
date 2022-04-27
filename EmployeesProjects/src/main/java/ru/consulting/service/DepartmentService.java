@@ -69,6 +69,12 @@ public class DepartmentService {
         Department department;
 
         DepartmentDto employeeDtoHigherDepartment = departmentDtoMap.get("higherDepartment");
+        DepartmentDto employeeDtoDepartment = departmentDtoMap.get("department");
+        if (employeeDtoHigherDepartment == null || employeeDtoDepartment == null) {
+            throw new RuntimeException("Ключи для Departments заданы не верно!Необходимо использовать 2 " +
+                    " ключа: department для Department, которому задается вышестоящий Department, " +
+                    "и higherDepartment для выщестоящего Department");
+        }
         Optional<Department> departmentOptional = departmentRepo.findByIdOrTitleIgnoreCase(employeeDtoHigherDepartment.getId(),
                 employeeDtoHigherDepartment.getTitle());
         if (departmentOptional.isPresent()) {
@@ -81,9 +87,9 @@ public class DepartmentService {
                 higherDepartment = departmentRepo.save(convertDepartmentDtoToDepartment(employeeDtoHigherDepartment));
             }
         }
-        DepartmentDto employeeDepartment = departmentDtoMap.get("department");
-        department = departmentRepo.findByIdOrTitleIgnoreCase(employeeDepartment.getId(),
-                employeeDepartment.getTitle()).orElseThrow(() -> new NoSuchEntityException("Department не существует"));
+
+        department = departmentRepo.findByIdOrTitleIgnoreCase(employeeDtoDepartment.getId(),
+                employeeDtoDepartment.getTitle()).orElseThrow(() -> new NoSuchEntityException("Department не существует"));
 
         department.setHigherDepartment(higherDepartment);
         departmentRepo.save(department);

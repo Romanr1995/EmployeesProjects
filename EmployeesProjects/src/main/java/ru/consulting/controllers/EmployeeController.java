@@ -5,7 +5,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.consulting.dto.EmployeeDto;
@@ -28,8 +27,8 @@ import java.util.List;
 public class EmployeeController {
 
     private EmployeeService employeeService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public void setEmployeeService(EmployeeService employeeService) {
@@ -114,9 +113,9 @@ public class EmployeeController {
         employeeService.addPosition(title, phone, email, principal);
     }
 
-    @PutMapping("/password")
-    public void editPassword(@RequestBody String password, Principal principal) {
-        employeeService.editPassword(passwordEncoder.encode(password), principal);
-    }
+//    @PutMapping("/password")
+//    public void editPassword(@RequestBody String password, Principal principal) {
+//        employeeService.editPassword(passwordEncoder.encode(password), principal);
+//    }
 
 }
