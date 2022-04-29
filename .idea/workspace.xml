@@ -5,27 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/DepartmentIntegration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_6_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_6_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_6_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_6_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_test_5_6_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_6_1.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_6_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_test_5_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/ClientServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/EmployeeServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/integration/ClientIntegration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/integration/EmployeeIntegration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_13_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EmployeesProjects/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/config/SecurityWebApplicationInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/config/SecurityWebApplicationInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/DepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/DepartmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/EmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/PositionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/PositionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/ProjectRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/ProjectRoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/EmployeeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/EmployeeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/DepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/DepartmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/DepartmentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/DepartmentServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/ClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/EmployeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/DepartmentIntegration.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/integration/DepartmentIntegration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +89,7 @@
       <recent name="C:\Users\rnozdrachev\IdeaProjects\EmployeesProjects\EmployeesProjects\src\main\resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ru.consulting.service" />
       <recent name="ru.consulting" />
     </key>
   </component>
@@ -102,92 +103,93 @@
       <command value="mvn dependency:analyze" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.DepartmentIntegration">
-    <configuration name="DepartmentIntegration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.EmployeeIntegration.showAllEmployee_with_filter_min_salary">
+    <configuration name="EmployeeIntegration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EmployeesProjects" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.consulting.service.*" />
+          <option name="PATTERN" value="ru.consulting.service.integration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.consulting.service" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.DepartmentIntegration" />
+      <option name="PACKAGE_NAME" value="ru.consulting.service.integration" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.EmployeeIntegration" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DepartmentIntegration.reauest_updateDepartmentHead_success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmployeeIntegration.deleteById_is_success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EmployeesProjects" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.consulting.service.*" />
+          <option name="PATTERN" value="ru.consulting.service.integration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.consulting.service" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.DepartmentIntegration" />
-      <option name="METHOD_NAME" value="reauest_updateDepartmentHead_success" />
+      <option name="PACKAGE_NAME" value="ru.consulting.service.integration" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.EmployeeIntegration" />
+      <option name="METHOD_NAME" value="deleteById_is_success" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DepartmentIntegration.request_deleteById_success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmployeeIntegration.request_saveNew_success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EmployeesProjects" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.consulting.service.*" />
+          <option name="PATTERN" value="ru.consulting.service.integration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.consulting.service" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.DepartmentIntegration" />
-      <option name="METHOD_NAME" value="request_deleteById_success" />
+      <option name="PACKAGE_NAME" value="ru.consulting.service.integration" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.EmployeeIntegration" />
+      <option name="METHOD_NAME" value="request_saveNew_success" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DepartmentIntegration.request_setHigherDepartment" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmployeeIntegration.request_saveNew_with_phone_is_not_correct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EmployeesProjects" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.consulting.service.*" />
+          <option name="PATTERN" value="ru.consulting.service.integration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.consulting.service" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.DepartmentIntegration" />
-      <option name="METHOD_NAME" value="request_setHigherDepartment" />
+      <option name="PACKAGE_NAME" value="ru.consulting.service.integration" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.EmployeeIntegration" />
+      <option name="METHOD_NAME" value="request_saveNew_with_phone_is_not_correct" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DepartmentServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EmployeeIntegration.showAllEmployee_with_filter_min_salary" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EmployeesProjects" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.consulting.service.*" />
+          <option name="PATTERN" value="ru.consulting.service.integration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.consulting.service" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.DepartmentServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="ru.consulting.service.integration" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.EmployeeIntegration" />
+      <option name="METHOD_NAME" value="showAllEmployee_with_filter_min_salary" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DepartmentIntegration" />
-        <item itemvalue="JUnit.DepartmentServiceTest" />
-        <item itemvalue="JUnit.DepartmentIntegration.request_deleteById_success" />
-        <item itemvalue="JUnit.DepartmentIntegration.reauest_updateDepartmentHead_success" />
-        <item itemvalue="JUnit.DepartmentIntegration.request_setHigherDepartment" />
+        <item itemvalue="JUnit.EmployeeIntegration.showAllEmployee_with_filter_min_salary" />
+        <item itemvalue="JUnit.EmployeeIntegration.deleteById_is_success" />
+        <item itemvalue="JUnit.EmployeeIntegration" />
+        <item itemvalue="JUnit.EmployeeIntegration.request_saveNew_with_phone_is_not_correct" />
+        <item itemvalue="JUnit.EmployeeIntegration.request_saveNew_success" />
       </list>
     </recent_temporary>
   </component>
@@ -340,7 +342,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650576261236</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Добавил интеграционные тесты для Department">
+      <created>1651094635935</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1651094635935</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -450,7 +459,8 @@
     <MESSAGE value="Обновил docker-compose.yml" />
     <MESSAGE value="Добавил тесты на DepartmentService" />
     <MESSAGE value="Update DepartmentServiceTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update DepartmentServiceTest" />
+    <MESSAGE value="Добавил интеграционные тесты для Department" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил интеграционные тесты для Department" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

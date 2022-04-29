@@ -18,10 +18,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@SQLDelete(sql =
-        "UPDATE projects " +
-                "SET deleted = true " +
-                "WHERE id = ?")
+//@SQLDelete(sql =
+//        "UPDATE projects " +
+//                "SET deleted = true " +
+//                "WHERE id = ?")
 @Loader(namedQuery = "findProjectsById")
 @NamedQuery(name = "findProjectsById", query =
         "SELECT p " +
@@ -69,4 +69,18 @@ public class Project {
 
     @OneToMany(mappedBy = "project")
     private List<EmployeeOnProject> employeeOnProjects;
+
+    public Project(String title) {
+        this.title = title;
+    }
+
+    public Project(String title, LocalDate start, LocalDate plannedEnding,
+                   LocalDate ending, Employee projectManager, Client client) {
+        this.title = title;
+        this.start = start;
+        this.plannedEnding = plannedEnding;
+        this.ending = ending;
+        this.projectManager = projectManager;
+        this.client = client;
+    }
 }

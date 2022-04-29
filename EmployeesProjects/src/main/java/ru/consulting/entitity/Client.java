@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Loader;
-import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
@@ -19,10 +18,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "Clients")
-@SQLDelete(sql =
-        "UPDATE clients " +
-                "SET deleted = true " +
-                "WHERE id = ?")
+//@SQLDelete(sql =
+//        "UPDATE clients " +
+//                "SET deleted = true " +
+//                "WHERE id = ?")
 @Loader(namedQuery = "findClientsById")
 @NamedQuery(name = "findClientsById", query =
         "SELECT c " +
@@ -55,4 +54,9 @@ public class Client {
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Project> projects;
 
+    public Client(String title, String email, String phone) {
+        this.title = title;
+        this.email = email;
+        this.phone = phone;
+    }
 }

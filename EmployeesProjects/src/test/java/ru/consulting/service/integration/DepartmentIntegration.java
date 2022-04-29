@@ -1,4 +1,4 @@
-package ru.consulting.service;
+package ru.consulting.service.integration;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,7 +49,7 @@ public class DepartmentIntegration {
     @BeforeEach
     @Transactional
     void sutup() {
-        department1 = departmentRepo.save(new Department().setTitle("Department1"));
+        department1 = departmentRepo.save(new Department("Department1"));
         employee1 = employeeRepo.save(new Employee("Test1", "Testov1", "Testovich1",
                 BigDecimal.valueOf(30000), LocalDate.of(2019, 8, 11),
                 "test@yandex.ru", "89765445344"));

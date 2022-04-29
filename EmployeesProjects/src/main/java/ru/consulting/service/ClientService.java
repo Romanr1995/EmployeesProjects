@@ -6,6 +6,7 @@ import ru.consulting.dto.ClientDto;
 import ru.consulting.dto.ProjectDto;
 import ru.consulting.entitity.Client;
 import ru.consulting.entitity.Project;
+import ru.consulting.exception_handling.NoSuchEntityException;
 import ru.consulting.repositories.ClientRepo;
 import ru.consulting.repositories.ProjectRepo;
 
@@ -34,7 +35,7 @@ public class ClientService {
 
     public void deleteByPhone(String phone) {
         Client client = clientRepo.findByPhone(phone).orElseThrow(() ->
-                new RuntimeException("Client с phone: " + phone + " не найден."));
+                new NoSuchEntityException("Client с phone: " + phone + " не найден."));
         clientRepo.delete(client);
     }
 

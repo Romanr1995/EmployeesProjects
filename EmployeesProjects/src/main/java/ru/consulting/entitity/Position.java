@@ -28,4 +28,7 @@ public class Position {
     @OneToMany(mappedBy = "position", fetch = FetchType.LAZY)
     private List<Employee> employees;
 
+    public Position(String title) {
+        this.title = title;
+    }
 }

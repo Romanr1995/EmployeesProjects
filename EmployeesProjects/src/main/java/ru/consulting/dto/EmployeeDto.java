@@ -42,4 +42,14 @@ public class EmployeeDto {
     @Pattern(regexp = "89[0-9]{9}", message = "Телефонный номер должен начинаться с 89, затем - 9 цифр")
     private String phone;
 
+
+    public EmployeeDto(String name, String surname, String patronymic,
+                       LocalDate dateOfEmployment, String email, String phone) {
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+        this.dateOfEmployment = dateOfEmployment;
+        this.email = email;
+        this.phone = phone;
+    }
 }

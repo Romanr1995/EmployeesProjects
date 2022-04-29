@@ -138,6 +138,7 @@ public class EmployeeService {
     }
 
     public void updateDepartment(String title, String name, String surname, Principal principal) {
+
         Department department = departmentRepo.findByTitleEqualsIgnoreCase(title).orElseThrow(
                 () -> new NoSuchEntityException("Department with title: " + title + " not found.")
         );
@@ -158,14 +159,15 @@ public class EmployeeService {
 
     public void setSalary(Long id, BigDecimal salary, Principal principal) {
 
-        final Employee employee = employeeRepo.findById(id).get();
+        final Employee employee = employeeRepo.findById(id).orElseThrow(
+                () -> new NoSuchEntityException("Employee с id: " + id + " не существует")
+        );
         if (employee.getDepartment() == null) {
             throw new RuntimeException("Изменить зарплату может только руководитель департамента," +
                     "в котором работает сотрудник.Необходимо сначала установить департамент");
         }
 
-        Employee empPrincipal = employeeRepo.findByEmail(principal.getName()).get();
-        if (isEmployeeUnderManager(empPrincipal, employee)) {
+        if (canDo(employee.getId(), principal)) {
             employee.setSalary(salary);
             employeeRepo.save(employee);
         } else {
@@ -217,8 +219,8 @@ public class EmployeeService {
     }
 
     public Employee convertEmployeeDtoToEmployee(EmployeeDto employeeDto) {
-        return new Employee(employeeDto.getName(), employeeDto.getSurname(), employeeDto.getPatronymic(),
-                employeeDto.getSalary(), employeeDto.getDateOfEmployment(), employeeDto.getEmail(), employeeDto.getPhone());
+        return new Employee(employeeDto.getName(), employeeDto.getSurname(), employeeDto.getPatronymic(), employeeDto.getSalary(),
+                employeeDto.getDateOfEmployment(), employeeDto.getEmail(), employeeDto.getPhone());
     }
 
     public boolean canDo(Long id, Principal principal) {
