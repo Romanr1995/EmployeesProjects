@@ -16,4 +16,8 @@ public class ProjectRoleDto {
     private String title;
 
     private Map<String, String> empSurnameAndProjectTitle;
+
+    public ProjectRoleDto(String title) {
+        this.title = title;
+    }
 }

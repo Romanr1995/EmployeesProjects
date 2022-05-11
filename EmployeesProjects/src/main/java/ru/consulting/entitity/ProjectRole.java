@@ -35,4 +35,8 @@ public class ProjectRole {
     @OneToMany(mappedBy = "projectRole",
             cascade = CascadeType.ALL)
     private List<EmployeeOnProject> employeeOnProjects;
+
+    public ProjectRole(String title) {
+        this.title = title;
+    }
 }

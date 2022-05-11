@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import ru.consulting.dto.EmployeeDto;
 import ru.consulting.entitity.Department;
 import ru.consulting.entitity.Employee;
@@ -25,25 +27,27 @@ import static org.mockito.Mockito.*;
 
 public class EmployeeServiceTest {
 
+    @Mock
     private EmployeeRepo employeeRepo;
+    @Mock
     private DepartmentRepo departmentRepo;
+    @Mock
     private PositionRepo positionRepo;
     private EmployeeService employeeService;
+    @Mock
     private Principal principal;
+
+    AutoCloseable mocks;
 
     @BeforeEach
     void setup() {
-        principal = mock(Principal.class);
-        employeeRepo = mock(EmployeeRepo.class);
-        departmentRepo = mock(DepartmentRepo.class);
-        positionRepo = mock(PositionRepo.class);
+        mocks = MockitoAnnotations.openMocks(this);
         employeeService = new EmployeeService(employeeRepo, departmentRepo, positionRepo);
     }
 
     @Test
     void save_new_success() {
-        EmployeeDto employeeDto = new EmployeeDto("Employee1", "Testov1", "Testovich1",
-                LocalDate.of(2019, 11, 13), "teat1@yandex.ru", "89924543234");
+        EmployeeDto employeeDto = getCompileEmpDto();
         ArgumentCaptor<Employee> argCaptor = ArgumentCaptor.forClass(Employee.class);
 
         employeeService.save(employeeDto);
@@ -54,19 +58,16 @@ public class EmployeeServiceTest {
 
     @Test
     void update_success() {
-        EmployeeDto employeeDto = new EmployeeDto("Employee1", "Testov1",
-                "Testovich1", LocalDate.of(2019, 11, 13),
-                "newemail@yandex.ru", "89924543234");
+        EmployeeDto employeeDto = getCompileEmpDto();
         employeeDto.setId(1L);
-        Employee employee = new Employee("Employee1", "Testov1", "Testovich1", null,
-                LocalDate.of(2011, 11, 15), "teat1@yandex.ru", "89924543234");
+        Employee employee = getCompileEmp1();
         ArgumentCaptor<Employee> argCaptor = ArgumentCaptor.forClass(Employee.class);
         when(employeeRepo.findById(employeeDto.getId())).thenReturn(Optional.of(employee));
 
         employeeService.update(employeeDto);
 
         verify(employeeRepo).save(argCaptor.capture());
-        assertEquals("newemail@yandex.ru", argCaptor.getValue().getEmail());
+        assertEquals(employee.getEmail(), argCaptor.getValue().getEmail());
         assertEquals(LocalDate.of(2019, 11, 13), argCaptor.getValue().getDateOfEmployment());
         assertDoesNotThrow(() -> employeeService.update(employeeDto));
     }
@@ -83,8 +84,7 @@ public class EmployeeServiceTest {
     @Test
     void set_department_success() {
         Department department = new Department("Department1");
-        Employee employee = new Employee("Employee1", "Testov1", "Testovich1", null,
-                LocalDate.of(2011, 11, 15), "teat1@yandex.ru", "89924543234");
+        Employee employee = getCompileEmp1();
         ArgumentCaptor<Employee> argCaptor = ArgumentCaptor.forClass(Employee.class);
 
         when(departmentRepo.findByTitleEqualsIgnoreCase(department.getTitle())).thenReturn(Optional.of(department));
@@ -101,11 +101,9 @@ public class EmployeeServiceTest {
     void update_exist_department_with_principal_admin() {
         Department department1 = new Department("Department1");
         Department department2 = new Department("Department2");
-        Employee employee = new Employee("Employee1", "Testov1", "Testovich1", null,
-                LocalDate.of(2011, 11, 15), "teat1@yandex.ru", "89924543234");
+        Employee employee = getCompileEmp1();
         employee.setDepartment(department1);
-        Employee empPrincipal = new Employee("Employee2", "Testov2", "Testovich2", null,
-                LocalDate.of(2016, 10, 13), "principal1@yandex.ru", "89953445654");
+        Employee empPrincipal = getCompileEmp2();
         employee.setDepartment(department1);
         empPrincipal.setRole(Set.of(Role.ADMIN));
         ArgumentCaptor<Employee> argCaptor = ArgumentCaptor.forClass(Employee.class);
@@ -126,10 +124,8 @@ public class EmployeeServiceTest {
     @Test
     void insertPosition_success() {
         Position position = new Position("IT");
-        Employee employee = new Employee("Employee1", "Testov1", "Testovich1", null,
-                LocalDate.of(2011, 11, 15), "teat1@yandex.ru", "89924543234");
-        Employee empPrincipal = new Employee("Employee2", "Testov2", "Testovich2", null,
-                LocalDate.of(2016, 10, 13), "principal1@yandex.ru", "89953445654");
+        Employee employee = getCompileEmp1();
+        Employee empPrincipal = getCompileEmp2();
         empPrincipal.setRole(Set.of(Role.ADMIN));
         ArgumentCaptor<Employee> argCaptor = ArgumentCaptor.forClass(Employee.class);
 
@@ -150,12 +146,10 @@ public class EmployeeServiceTest {
     @Test
     void setSalary_access() {
         Department department1 = new Department("Department1");
-        Employee employee = new Employee("Employee1", "Testov1", "Testovich1", null,
-                LocalDate.of(2011, 11, 15), "teat1@yandex.ru", "89924543234");
+        Employee employee = getCompileEmp1();
         employee.setId(1L);
         employee.setDepartment(department1);
-        Employee empPrincipal = new Employee("Employee2", "Testov2", "Testovich2", null,
-                LocalDate.of(2016, 10, 13), "principal1@yandex.ru", "89953445654");
+        Employee empPrincipal = getCompileEmp2();
         empPrincipal.setRole(Set.of(Role.ADMIN));
         ArgumentCaptor<Employee> argCaptor = ArgumentCaptor.forClass(Employee.class);
 
@@ -168,5 +162,20 @@ public class EmployeeServiceTest {
 
         verify(employeeRepo).save(argCaptor.capture());
         assertEquals(BigDecimal.valueOf(30000), argCaptor.getValue().getSalary());
+    }
+
+    private EmployeeDto getCompileEmpDto() {
+        return new EmployeeDto("Employee1", "Testov1", "Testovich1",
+                LocalDate.of(2019, 11, 13), "teat1@yandex.ru", "89924543234");
+    }
+
+    private Employee getCompileEmp1() {
+        return new Employee("Employee1", "Testov1", "Testovich1", null,
+                LocalDate.of(2011, 11, 15), "teat1@yandex.ru", "89924543234");
+    }
+
+    private Employee getCompileEmp2() {
+        return new Employee("Employee2", "Testov2", "Testovich2", null,
+                LocalDate.of(2016, 10, 13), "principal1@yandex.ru", "89953445654");
     }
 }

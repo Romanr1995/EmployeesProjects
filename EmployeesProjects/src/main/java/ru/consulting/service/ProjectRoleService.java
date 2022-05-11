@@ -62,6 +62,9 @@ public class ProjectRoleService {
             @Override
             public ProjectRoleDto next() {
                 final ProjectRole next = iterator.next();
+                if (next.getEmployeeOnProjects() == null) {
+                    return new ProjectRoleDto(next.getTitle());
+                }
                 Map<String, String> empSurnameAndProjectTitle = new HashMap<>();
                 for (EmployeeOnProject employeeOnProject : next.getEmployeeOnProjects()) {
                     empSurnameAndProjectTitle.put(employeeOnProject.getEmployee().getSurname()

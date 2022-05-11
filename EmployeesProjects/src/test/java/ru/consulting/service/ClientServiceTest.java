@@ -27,9 +27,9 @@ public class ClientServiceTest {
     public static final String CLIENT_TITLE = "Client1";
     public static final String CLIENT_EMAIL = "test@yandex.ru";
     public static final String CLIENT_PHONE = "89998754433";
-    private ClientRepo clientRepo;
-    private ProjectRepo projectRepo;
-    private ClientService clientService;
+    ClientRepo clientRepo;
+    ProjectRepo projectRepo;
+    ClientService clientService;
 
     Client client;
 
