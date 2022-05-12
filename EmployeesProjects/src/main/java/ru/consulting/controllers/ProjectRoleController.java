@@ -8,7 +8,7 @@ import ru.consulting.entitity.ProjectRole;
 import ru.consulting.service.ProjectRoleService;
 
 @RestController
-@RequestMapping("${project.role.api}")
+@RequestMapping("role/project")
 public class ProjectRoleController {
     private ProjectRoleService projectRoleService;
 

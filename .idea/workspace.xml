@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="Добавил юнит и интеграционное тестирование на PositionService и EmployeeService">
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/ProjectRoleServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+    <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="Добавил юнит тесты на ProjectRoleService">
+      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/integration/ProjectRoleIntegration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/config/SecurityWebApplicationInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/config/SecurityWebApplicationInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/ProjectRoleDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/dto/ProjectRoleDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/ProjectRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/entitity/ProjectRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/ProjectRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/service/ProjectRoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/ClientServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/ClientServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/EmployeeServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/EmployeeServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/integration/EmployeeIntegration.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/integration/EmployeeIntegration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/ProjectRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/ProjectRoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-test.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +65,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/rnozdrachev/IdeaProjects/My/EmployeesProjects&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;c859770170a3573fb34b31a539dd48cf&quot;
   }
 }</component>
@@ -94,8 +90,8 @@
       <command value="mvn dependency:analyze" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ProjectRoleServiceTest">
-    <configuration name="EmployeeIntegration.update_department_success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ProjectRoleIntegration.showAll">
+    <configuration name="ProjectRoleIntegration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EmployeesProjects" />
       <extension name="coverage">
         <pattern>
@@ -104,71 +100,71 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ru.consulting.service.integration" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.EmployeeIntegration" />
-      <option name="METHOD_NAME" value="update_department_success" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EmployeeIntegration.update_position_success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="EmployeesProjects" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.consulting.service.integration.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.consulting.service.integration" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.EmployeeIntegration" />
-      <option name="METHOD_NAME" value="update_position_success" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProjectRoleServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="EmployeesProjects" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.consulting.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.consulting.service" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.ProjectRoleServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.ProjectRoleIntegration" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProjectRoleServiceTest.findAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProjectRoleIntegration.add_is_Ok" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EmployeesProjects" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.consulting.service.*" />
+          <option name="PATTERN" value="ru.consulting.service.integration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.consulting.service" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.ProjectRoleServiceTest" />
-      <option name="METHOD_NAME" value="findAll" />
+      <option name="PACKAGE_NAME" value="ru.consulting.service.integration" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.ProjectRoleIntegration" />
+      <option name="METHOD_NAME" value="add_is_Ok" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProjectRoleServiceTest.safe_delete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProjectRoleIntegration.delete_by_title_success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EmployeesProjects" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.consulting.service.*" />
+          <option name="PATTERN" value="ru.consulting.service.integration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ru.consulting.service" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.ProjectRoleServiceTest" />
-      <option name="METHOD_NAME" value="safe_delete" />
+      <option name="PACKAGE_NAME" value="ru.consulting.service.integration" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.ProjectRoleIntegration" />
+      <option name="METHOD_NAME" value="delete_by_title_success" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProjectRoleIntegration.delete_by_title_with_role_not_exist" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EmployeesProjects" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.consulting.service.integration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.consulting.service.integration" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.ProjectRoleIntegration" />
+      <option name="METHOD_NAME" value="delete_by_title_with_role_not_exist" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProjectRoleIntegration.showAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EmployeesProjects" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.consulting.service.integration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.consulting.service.integration" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.ProjectRoleIntegration" />
+      <option name="METHOD_NAME" value="showAll" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -183,11 +179,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ProjectRoleServiceTest" />
-        <item itemvalue="JUnit.ProjectRoleServiceTest.findAll" />
-        <item itemvalue="JUnit.ProjectRoleServiceTest.safe_delete" />
-        <item itemvalue="JUnit.EmployeeIntegration.update_position_success" />
-        <item itemvalue="JUnit.EmployeeIntegration.update_department_success" />
+        <item itemvalue="JUnit.ProjectRoleIntegration.showAll" />
+        <item itemvalue="JUnit.ProjectRoleIntegration.delete_by_title_with_role_not_exist" />
+        <item itemvalue="JUnit.ProjectRoleIntegration.delete_by_title_success" />
+        <item itemvalue="JUnit.ProjectRoleIntegration" />
+        <item itemvalue="JUnit.ProjectRoleIntegration.add_is_Ok" />
       </list>
     </recent_temporary>
   </component>
@@ -203,7 +199,8 @@
       <workItem from="1652040638765" duration="84000" />
       <workItem from="1652204861045" duration="636000" />
       <workItem from="1652279349582" duration="1734000" />
-      <workItem from="1652281197433" duration="18922000" />
+      <workItem from="1652281197433" duration="27150000" />
+      <workItem from="1652341608501" duration="323000" />
     </task>
     <task id="LOCAL-00001" summary="Добавил Service">
       <created>1645012725591</created>
@@ -359,7 +356,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651228148445</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Добавил юнит тесты на ProjectRoleService">
+      <created>1652303664123</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1652303664123</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -490,7 +494,8 @@
     <MESSAGE value="Update DepartmentServiceTest" />
     <MESSAGE value="Добавил интеграционные тесты для Department" />
     <MESSAGE value="Добавил юнит и интеграционное тестирование на PositionService и EmployeeService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил юнит и интеграционное тестирование на PositionService и EmployeeService" />
+    <MESSAGE value="Добавил юнит тесты на ProjectRoleService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил юнит тесты на ProjectRoleService" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
