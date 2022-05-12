@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,7 +79,7 @@ public class ClientIntegration {
         clientRepo.deleteAll();
         projectRepo.deleteAll();
     }
-
+    @WithMockUser(authorities = {"employee:write"})
     @Test
     void request_save_is_ok() throws Exception {
         String body = """
@@ -94,7 +95,7 @@ public class ClientIntegration {
                 )
                 .andExpect(status().isOk());
     }
-
+    @WithMockUser(authorities = {"employee:write"})
     @Test
     void request_save_exist_client() throws Exception {
         String body = """
@@ -110,7 +111,7 @@ public class ClientIntegration {
                 )
                 .andExpect(status().is(400));
     }
-
+    @WithMockUser(authorities = {"employee:write"})
     @Test
     void delete_by_phone_success() throws Exception {
         mockMvc.perform(
@@ -121,7 +122,7 @@ public class ClientIntegration {
 
         assertEquals(clientRepo.findByPhone(client1.getPhone()), Optional.empty());
     }
-
+    @WithMockUser(authorities = {"employee_read"})
     @Test
     void showByTitle_success() throws Exception {
         String result = mockMvc.perform(get
@@ -138,7 +139,7 @@ public class ClientIntegration {
         assertEquals(client1.getEmail(), clientDto.getEmail());
         assertEquals(client1.getPhone(), clientDto.getPhone());
     }
-
+    @WithMockUser(authorities = {"employee_read"})
     @Test
     void showAllProjects_is_success() throws Exception {
         String result = mockMvc.perform(get

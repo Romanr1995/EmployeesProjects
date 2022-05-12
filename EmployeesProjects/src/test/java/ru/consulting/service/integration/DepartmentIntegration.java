@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,7 +62,7 @@ public class DepartmentIntegration {
         departmentRepo.deleteAll();
         employeeRepo.deleteAll();
     }
-
+    @WithMockUser(authorities = {"employee:write"})
     @Test
     void request_saveNew_success() throws Exception {
         String body = "{\"title\":\"Department2\"}";
@@ -72,7 +73,7 @@ public class DepartmentIntegration {
                 )
                 .andExpect(status().is(200));
     }
-
+    @WithMockUser(authorities = "employee:partial_write")
     @Test
     void reques_showAll_success() throws Exception {
         String result = mockMvc.perform(get
@@ -86,7 +87,7 @@ public class DepartmentIntegration {
 
         assertEquals(department1.getTitle(), readValue.get(0).getTitle());
     }
-
+    @WithMockUser(authorities = {"employee:write"})
     @Test
     void request_deleteById_success() throws Exception {
         mockMvc.perform(
@@ -97,7 +98,7 @@ public class DepartmentIntegration {
 
         assertEquals(departmentRepo.findById(department1.getId()), Optional.empty());
     }
-
+    @WithMockUser(authorities = {"employee:write"})
     @Test
     void reauest_updateDepartmentHead_success() throws Exception {
         mockMvc.perform(
@@ -108,7 +109,7 @@ public class DepartmentIntegration {
                 )
                 .andExpect(status().isOk());
     }
-
+    @WithMockUser(authorities = {"employee:write"})
     @Test
     void request_setHigherDepartment() throws Exception {
         Department department = departmentRepo.save(new Department("dep1"));

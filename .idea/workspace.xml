@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="Добавил юнит тесты на ProjectRoleService">
-      <change afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/integration/ProjectRoleIntegration.java" afterDir="false" />
+    <list default="true" id="54c3c57d-bd99-41fa-965c-b6c53a58bb62" name="Changes" comment="Добавил интеграционнык тесты на ProjectRoleService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/ProjectRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/java/ru/consulting/controllers/ProjectRoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-dev.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/main/resources/application-test.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/integration/ClientIntegration.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/integration/ClientIntegration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/integration/DepartmentIntegration.java" beforeDir="false" afterPath="$PROJECT_DIR$/EmployeesProjects/src/test/java/ru/consulting/service/integration/DepartmentIntegration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +88,8 @@
       <command value="mvn dependency:analyze" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ProjectRoleIntegration.showAll">
-    <configuration name="ProjectRoleIntegration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.DepartmentIntegration">
+    <configuration name="ClientIntegration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EmployeesProjects" />
       <extension name="coverage">
         <pattern>
@@ -100,13 +98,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ru.consulting.service.integration" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.ProjectRoleIntegration" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.ClientIntegration" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProjectRoleIntegration.add_is_Ok" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DepartmentIntegration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EmployeesProjects" />
       <extension name="coverage">
         <pattern>
@@ -115,9 +113,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ru.consulting.service.integration" />
-      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.ProjectRoleIntegration" />
-      <option name="METHOD_NAME" value="add_is_Ok" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="ru.consulting.service.integration.DepartmentIntegration" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -179,11 +176,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DepartmentIntegration" />
+        <item itemvalue="JUnit.ClientIntegration" />
         <item itemvalue="JUnit.ProjectRoleIntegration.showAll" />
         <item itemvalue="JUnit.ProjectRoleIntegration.delete_by_title_with_role_not_exist" />
         <item itemvalue="JUnit.ProjectRoleIntegration.delete_by_title_success" />
-        <item itemvalue="JUnit.ProjectRoleIntegration" />
-        <item itemvalue="JUnit.ProjectRoleIntegration.add_is_Ok" />
       </list>
     </recent_temporary>
   </component>
@@ -200,7 +197,7 @@
       <workItem from="1652204861045" duration="636000" />
       <workItem from="1652279349582" duration="1734000" />
       <workItem from="1652281197433" duration="27150000" />
-      <workItem from="1652341608501" duration="323000" />
+      <workItem from="1652341608501" duration="1550000" />
     </task>
     <task id="LOCAL-00001" summary="Добавил Service">
       <created>1645012725591</created>
@@ -363,7 +360,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652303664123</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Добавил интеграционнык тесты на ProjectRoleService">
+      <created>1652341990297</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1652341990297</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -495,7 +499,8 @@
     <MESSAGE value="Добавил интеграционные тесты для Department" />
     <MESSAGE value="Добавил юнит и интеграционное тестирование на PositionService и EmployeeService" />
     <MESSAGE value="Добавил юнит тесты на ProjectRoleService" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил юнит тесты на ProjectRoleService" />
+    <MESSAGE value="Добавил интеграционнык тесты на ProjectRoleService" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил интеграционнык тесты на ProjectRoleService" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
